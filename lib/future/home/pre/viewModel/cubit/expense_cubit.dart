@@ -12,6 +12,9 @@ class ExpenseCubit extends Cubit<ExpenseState> {
   getDataFromDatabase() async {
     await databaseSqfliteService.getAllData().then(
       (value) {
+        value.forEach((element) {
+          print(element.toMap());
+        });
         emit(
           state.copyWith(
               getDatabaseExpansesModel: value,
@@ -26,14 +29,13 @@ class ExpenseCubit extends Cubit<ExpenseState> {
   }
 
   addNewDataFromDatabase(ExpanseModel expanseModel) async {
-    await databaseSqfliteService
-        .addData(expanseModel)
-        .then(
-          (value) {},
-        )
-        .catchError(
-          (onError) {},
-        );
+    await databaseSqfliteService.addData(expanseModel).then(
+      (value) {
+        getDataFromDatabase();
+      },
+    ).catchError(
+      (onError) {},
+    );
   }
 
   updateDataFromDatabase(ExpanseModel expanseModel) async {

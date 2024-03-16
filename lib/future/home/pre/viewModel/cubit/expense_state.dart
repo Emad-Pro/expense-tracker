@@ -2,7 +2,7 @@ part of 'expense_cubit.dart';
 
 class ExpenseState extends Equatable {
   final RequestState getDatabaseExpansesState;
-  final List<ExpanseModel>? getDatabaseExpansesModel;
+  final List<ExpanseModelGetData>? getDatabaseExpansesModel;
   final String messageExpansesText;
 
   const ExpenseState(
@@ -11,7 +11,7 @@ class ExpenseState extends Equatable {
       this.messageExpansesText = ''});
   ExpenseState copyWith(
       {RequestState? getDatabaseExpansesState,
-      List<ExpanseModel>? getDatabaseExpansesModel,
+      List<ExpanseModelGetData>? getDatabaseExpansesModel,
       String? messageExpansesText}) {
     return ExpenseState(
         messageExpansesText: messageExpansesText ?? this.messageExpansesText,

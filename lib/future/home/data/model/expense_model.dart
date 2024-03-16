@@ -1,14 +1,12 @@
 class ExpanseModel {
-  final int? id;
   final String name;
-  final double amount;
-  final DateTime? date;
+  final String? amount;
+  final String? date;
 
-  ExpanseModel({this.id, this.name = '', this.amount = 0.0, this.date});
+  ExpanseModel({this.name = '', this.amount, this.date});
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
       'amount': amount,
       'date': date,
@@ -17,10 +15,32 @@ class ExpanseModel {
 
   factory ExpanseModel.fromMap(Map<String, dynamic> map) {
     return ExpanseModel(
-      id: map['id'] as int,
       name: map['name'] as String,
-      amount: map['amount'] ?? 0,
-      date: map['date'] ?? DateTime.now(),
+      amount: map['amount'],
+      date: map['date'] ?? DateTime.now().toString(),
+    );
+  }
+}
+
+class ExpanseModelGetData {
+  final int id;
+  final String name;
+  final String? amount;
+  final String? date;
+
+  ExpanseModelGetData(
+      {this.name = '', this.amount, this.date, required this.id});
+
+  Map<String, dynamic> toMap() {
+    return {'name': name, 'amount': amount, 'date': date, 'id': id};
+  }
+
+  factory ExpanseModelGetData.fromMap(Map<String, dynamic> map) {
+    return ExpanseModelGetData(
+      name: map['name'] as String,
+      id: map['id'],
+      amount: map['amount'],
+      date: map['date'] ?? DateTime.now().toString(),
     );
   }
 }

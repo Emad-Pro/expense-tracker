@@ -41,21 +41,25 @@ class DatabaseSqfliteService {
     return await db.rawQuery(query);
   }
 
-  Future<List<ExpanseModel>> getAllData() async {
+  Future<List<ExpanseModelGetData>> getAllData() async {
     List<Map<String, dynamic>> expenseMap =
         await getData('SELECT * FROM expenseTable');
-    return expenseMap.map((map) => ExpanseModel.fromMap(map)).toList();
+    return expenseMap.map((map) => ExpanseModelGetData.fromMap(map)).toList();
   }
 
   Future<int> addData(ExpanseModel expanseModel) async {
     Database db = await instance.database;
-    return await db.insert('expenseTable', expanseModel.toMap());
+    return await db.insert(
+      'expenseTable',
+      expanseModel.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<int> updateData(ExpanseModel expanseModel) async {
     Database db = await instance.database;
     return await db.update('expenseTable', expanseModel.toMap(),
-        where: 'id = ?', whereArgs: [expanseModel.id]);
+        where: 'id = ?', whereArgs: [1]);
   }
 
   Future<int> deleteData(int id) async {
