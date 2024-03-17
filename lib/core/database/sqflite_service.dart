@@ -1,3 +1,4 @@
+import 'package:expense_tracker/future/home/data/model/expanse_model_getData.dart';
 import 'package:expense_tracker/future/home/data/model/expense_model.dart';
 
 import 'package:sqflite/sqflite.dart';
@@ -56,9 +57,9 @@ class DatabaseSqfliteService {
     );
   }
 
-  Future<int> updateData(ExpanseModel expanseModel) async {
+  Future<int> updateData(ExpanseModelGetData expanseModelGetData) async {
     Database db = await instance.database;
-    return await db.update('expenseTable', expanseModel.toMap(),
+    return await db.update('expenseTable', expanseModelGetData.toMap(),
         where: 'id = ?', whereArgs: [1]);
   }
 

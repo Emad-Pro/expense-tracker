@@ -10,15 +10,33 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: const Column(),
-        drawer: const DrawerWidget(),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add_circle_outline_sharp),
-          onPressed: () {
-            floatingActionButtonPressd(context);
-          },
-        ));
+      appBar: AppBar(),
+      drawer: const DrawerWidget(),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add_circle_outline_sharp),
+        onPressed: () {
+          floatingActionButtonPressd(context);
+        },
+      ),
+      body: BlocBuilder<ExpenseCubit, ExpenseState>(
+        builder: (context, state) {
+          if (state.getDatabaseExpansesModel != null) {
+            return ListView.builder(
+                itemCount: state.getDatabaseExpansesModel!.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                        state.getDatabaseExpansesModel![index].name.toString()),
+                    leading:
+                        Text(state.getDatabaseExpansesModel![index].amount!),
+                  );
+                });
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
+      ),
+    );
   }
 }
 

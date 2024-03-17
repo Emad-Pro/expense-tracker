@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:expense_tracker/core/database/sqflite_service.dart';
 import 'package:expense_tracker/core/enum/enum.dart';
+import 'package:expense_tracker/future/home/data/model/expanse_model_getData.dart';
 import 'package:expense_tracker/future/home/data/model/expense_model.dart';
+import 'package:flutter/foundation.dart';
 
 part 'expense_state.dart';
 
@@ -12,9 +14,11 @@ class ExpenseCubit extends Cubit<ExpenseState> {
   getDataFromDatabase() async {
     await databaseSqfliteService.getAllData().then(
       (value) {
-        value.forEach((element) {
-          print(element.toMap());
-        });
+        for (var element in value) {
+          if (kDebugMode) {
+            print(element.toMap());
+          }
+        }
         emit(
           state.copyWith(
               getDatabaseExpansesModel: value,
@@ -38,9 +42,9 @@ class ExpenseCubit extends Cubit<ExpenseState> {
     );
   }
 
-  updateDataFromDatabase(ExpanseModel expanseModel) async {
+  updateDataFromDatabase(ExpanseModelGetData expanseModelGetData) async {
     await databaseSqfliteService
-        .updateData(expanseModel)
+        .updateData(expanseModelGetData)
         .then(
           (value) {},
         )

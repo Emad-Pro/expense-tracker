@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           value: getIt<SettingCubit>(),
         ),
         BlocProvider(
-          create: (context) => ExpenseCubit(getIt()),
+          create: (context) => ExpenseCubit(getIt())..getDataFromDatabase(),
         ),
       ],
       child: BlocBuilder<SettingCubit, SettingState>(
