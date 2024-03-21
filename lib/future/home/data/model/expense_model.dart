@@ -1,23 +1,33 @@
 class ExpanseModel {
-  final String name;
+  final String description;
   final String? amount;
   final String? date;
+  final String? time;
+  final String? categories;
 
-  ExpanseModel({this.name = '', this.amount, this.date});
+  ExpanseModel(
+      {this.description = '',
+      this.amount,
+      this.date,
+      this.categories,
+      this.time});
 
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
+      'description': description,
       'amount': amount,
       'date': date,
+      'categories': categories,
+      'time': time,
     };
   }
 
   factory ExpanseModel.fromMap(Map<String, dynamic> map) {
     return ExpanseModel(
-      name: map['name'] as String,
-      amount: map['amount'],
-      date: map['date'] ?? DateTime.now().toString(),
-    );
+        description: map['description'],
+        amount: map['amount'],
+        date: map['date'],
+        categories: map['categories'],
+        time: map['time']);
   }
 }

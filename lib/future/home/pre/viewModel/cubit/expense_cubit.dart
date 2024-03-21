@@ -11,16 +11,20 @@ part 'expense_state.dart';
 class ExpenseCubit extends Cubit<ExpenseState> {
   ExpenseCubit(this.databaseSqfliteService) : super(const ExpenseState());
   final DatabaseSqfliteService databaseSqfliteService;
+  List<String> categories = ['Food', 'Medical', 'Shopping', 'Other'];
   getDataFromDatabase() async {
     await databaseSqfliteService.getAllData().then(
       (value) {
-        for (var element in value) {
-          if (kDebugMode) {
-            print(element.toMap());
+        double totalAmount = 0;
+        for (var expense in value) {
+          if (expense.amount != null) {
+            totalAmount += double.parse(expense.amount!);
           }
         }
+
         emit(
           state.copyWith(
+              totalAmount: totalAmount,
               getDatabaseExpansesModel: value,
               getDatabaseExpansesState: RequestState.sucess),
         );

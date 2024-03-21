@@ -15,7 +15,7 @@ class DatabaseSqfliteService {
   Future<Database> get database async => _database ??= await _initDatabase();
 
   Future<Database> _initDatabase() async {
-    String dbPath = path.join(await getDatabasesPath(), 'expenseDatabase.db');
+    String dbPath = path.join(await getDatabasesPath(), 'data.db');
     return await openDatabase(
       dbPath,
       version: 1,
@@ -28,8 +28,10 @@ class DatabaseSqfliteService {
     await db.execute('''
       CREATE TABLE expenseTable (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
+        description TEXT ,
         amount TEXT,
+        categories TEXT,
+        time TEXT,
         date TEXT
       )
     ''');
