@@ -425,7 +425,7 @@ class BuildItemListView extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            "$amount 10\$",
+            "$amount \$",
             style: const TextStyle(fontWeight: FontWeight.bold),
           )
         ],

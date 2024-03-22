@@ -5,20 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class ExpensesTotalWidget extends StatelessWidget {
   ExpensesTotalWidget({super.key, required this.expenseState});
   final ExpenseState expenseState;
-  final List<String> genderOptions = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apق',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -62,24 +48,26 @@ class ExpensesTotalWidget extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            SizedBox(
-              width: 100,
-              child: FormBuilderDropdown<String>(
-                isDense: false,
-                isExpanded: false,
-                name: 'gender',
-                initialValue: genderOptions[0],
-                decoration: const InputDecoration(
-                    alignLabelWithHint: true, border: InputBorder.none),
-                items: genderOptions
-                    .map((gender) => DropdownMenuItem(
-                          alignment: AlignmentDirectional.center,
-                          value: gender,
-                          child: Text(gender),
-                        ))
-                    .toList(),
-              ),
-            ),
+            expenseState.getMonthsExpense == null
+                ? CircularProgressIndicator()
+                : SizedBox(
+                    width: 100,
+                    child: FormBuilderDropdown<String>(
+                      isDense: false,
+                      isExpanded: false,
+                      name: 'gender',
+                      initialValue: expenseState.getMonthsExpense![0],
+                      decoration: const InputDecoration(
+                          alignLabelWithHint: true, border: InputBorder.none),
+                      items: expenseState.getMonthsExpense!
+                          .map((gender) => DropdownMenuItem(
+                                alignment: AlignmentDirectional.center,
+                                value: gender,
+                                child: Text(gender),
+                              ))
+                          .toList(),
+                    ),
+                  ),
           ],
         ),
       ),
