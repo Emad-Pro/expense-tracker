@@ -5,6 +5,7 @@ import 'package:expense_tracker/core/sharedPreferences/cacheHelper.dart';
 import 'package:expense_tracker/core/theme/theme.dart';
 import 'package:expense_tracker/future/home/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:expense_tracker/future/settingScreen/pre/viewModel/cubit/setting_cubit.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,9 +37,9 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             title: 'Expense Tracker',
-            theme: ThemeService().lightMode,
-            darkTheme: ThemeService().darkMode,
-            themeMode: ThemeMode.dark,
+            theme: FlexThemeData.light(scheme: FlexScheme.redWine),
+            darkTheme: FlexThemeData.dark(scheme: FlexScheme.redWine),
+            themeMode: ThemeMode.light,
             //   ThemeService.darkModeValue ? ThemeMode.dark : ThemeMode.light,
             home: ProfileService.homewidget(),
           );

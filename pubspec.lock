@@ -129,6 +129,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
+  flex_color_scheme:
+    dependency: "direct main"
+    description:
+      name: flex_color_scheme
+      sha256: "32914024a4f404d90ff449f58d279191675b28e7c08824046baf06826e99d984"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.3.1"
+  flex_seed_scheme:
+    dependency: transitive
+    description:
+      name: flex_seed_scheme
+      sha256: "29c12aba221eb8a368a119685371381f8035011d18de5ba277ad11d7dfb8657f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -150,6 +166,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.2.1"
+  flutter_initicon:
+    dependency: "direct main"
+    description:
+      name: flutter_initicon
+      sha256: "5aeda6b16150cb54a34a048a85f9cfddbf36a92135f769ea998d1394dcb54a0f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0+1"
   flutter_lints:
     dependency: "direct dev"
     description:

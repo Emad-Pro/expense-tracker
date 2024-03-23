@@ -1,6 +1,7 @@
 import 'package:expense_tracker/core/profile_service/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_initicon/flutter_initicon.dart';
 
 class CustomAppbar extends StatelessWidget {
   const CustomAppbar({
@@ -11,15 +12,18 @@ class CustomAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          child: Text("EA"),
+        Initicon(
+          backgroundColor: const Color.fromARGB(255, 74, 20, 140),
+          text: ProfileService.userName!,
         ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          "Hello ${ProfileService.userName}",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Padding(
+          padding: MediaQuery.of(context).padding.copyWith(left: 5.0),
+          child: Text(
+            "Hello, ${ProfileService.userName}",
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).textScaler.scale(16),
+                fontWeight: FontWeight.bold),
+          ),
         ),
         const Spacer(),
         IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.settings)),

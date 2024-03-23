@@ -20,10 +20,13 @@ class ExpenseCubit extends Cubit<ExpenseState> {
       (value) {
         emit(
           state.copyWith(
-              totalAmount: calcTotalAmountMethod(value),
-              getDatabaseExpansesModel: value,
-              getDatabaseExpansesState: RequestState.sucess,
-              getMonthsExpense: getMonthsYears(value)),
+            categoriesTotalItem: calculateCategoryTotals(value),
+            categoriesItems: getCategoriesItem(value),
+            totalAmount: calcTotalAmountMethod(value),
+            getDatabaseExpansesModel: value,
+            getDatabaseExpansesState: RequestState.sucess,
+            getMonthsExpense: getMonthsYears(value),
+          ),
         );
       },
     ).catchError((onError) {
@@ -39,6 +42,7 @@ class ExpenseCubit extends Cubit<ExpenseState> {
   addNewDataFromDatabase(ExpanseModel expanseModel) async {
     await databaseSqfliteService.addData(expanseModel).then(
       (value) {
+        emit(state.copyWith(addExpenseItem: RequestState.sucess));
         getDataFromDatabase();
       },
     ).catchError(

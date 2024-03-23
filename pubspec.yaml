@@ -49,6 +49,8 @@ dependencies:
   cupertino_onboarding: ^1.2.0
   rflutter_alert: ^2.0.7
   bottom_picker: ^2.4.0
+  flutter_initicon: ^3.0.0+1
+  flex_color_scheme: ^7.3.1
 
 
 
