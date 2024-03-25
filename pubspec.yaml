@@ -51,6 +51,8 @@ dependencies:
   bottom_picker: ^2.4.0
   flutter_initicon: ^3.0.0+1
   flex_color_scheme: ^7.3.1
+  fl_chart: ^0.66.2
+  sliding_clipped_nav_bar: ^3.1.1
 
 
 

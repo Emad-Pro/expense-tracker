@@ -1,5 +1,5 @@
-import 'package:expense_tracker/future/home/data/model/expanse_model_getData.dart';
-import 'package:expense_tracker/future/home/data/model/expense_model.dart';
+import 'package:expense_tracker/future/expense/data/model/expanse_model_getData.dart';
+import 'package:expense_tracker/future/expense/data/model/expense_model.dart';
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as path;
@@ -47,6 +47,17 @@ class DatabaseSqfliteService {
   Future<List<ExpanseModelGetData>> getAllData() async {
     List<Map<String, dynamic>> expenseMap =
         await getData('SELECT * FROM expenseTable');
+    return expenseMap.map((map) => ExpanseModelGetData.fromMap(map)).toList();
+  }
+
+  Future<List<Map<String, dynamic>>> getQuryData(String query) async {
+    Database db = await instance.database;
+    return await db
+        .query('expenseTable', where: 'date LIKE ?', whereArgs: ['%${query}%']);
+  }
+
+  Future<List<ExpanseModelGetData>> getDataFromQuary(String date) async {
+    List<Map<String, dynamic>> expenseMap = await getQuryData(date);
     return expenseMap.map((map) => ExpanseModelGetData.fromMap(map)).toList();
   }
 

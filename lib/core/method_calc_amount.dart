@@ -1,4 +1,4 @@
-import 'package:expense_tracker/future/home/data/model/expanse_model_getData.dart';
+import 'package:expense_tracker/future/expense/data/model/expanse_model_getData.dart';
 
 double calcTotalAmountMethod(
   List<ExpanseModelGetData> value,

@@ -1,4 +1,4 @@
-import 'package:expense_tracker/future/home/data/model/expanse_model_getData.dart';
+import 'package:expense_tracker/future/expense/data/model/expanse_model_getData.dart';
 import 'package:intl/intl.dart';
 
 DateTime? _parseDate(String? dateString) {
@@ -6,9 +6,7 @@ DateTime? _parseDate(String? dateString) {
     return null;
   }
   try {
-    print(dateString);
-    print(DateFormat('EEE, MM/DD/yyyy').parse(dateString));
-    return DateFormat('EEE, MM/DD/yyyy').parse(dateString);
+    return DateFormat('dd , MMM, yyy').parse(dateString);
   } catch (e) {
     return null;
   }
@@ -19,11 +17,18 @@ List<String> getMonthsYears(List<ExpanseModelGetData> list) {
   for (ExpanseModelGetData item in list) {
     DateTime? date = _parseDate(item.date);
     if (date != null) {
-      String monthYear = DateFormat.yMMM().format(date);
-      uniqueMonthsYears.add(monthYear);
+      uniqueMonthsYears.add(DateFormat('MMM, yyy').format(date));
     }
   }
   return uniqueMonthsYears.toList();
+}
+
+String convertDateToYearMounth(String date) {
+  String dateConverted = '';
+
+  DateTime? dateTime = DateFormat('yyyy-MM-dd').parse(date);
+  dateConverted = DateFormat.yMMM().format(dateTime).toString();
+  return dateConverted;
 }
 
 List<String> getCategoriesItem(List<ExpanseModelGetData> list) {

@@ -1,6 +1,7 @@
 import 'package:cupertino_onboarding/cupertino_onboarding.dart';
 import 'package:expense_tracker/core/profile_service/profile.dart';
 import 'package:expense_tracker/core/sharedPreferences/cacheHelper.dart';
+
 import 'package:expense_tracker/future/home/pre/view/home_screen.dart';
 import 'package:expense_tracker/future/onboarding/view_model/cubit/onboarding_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +19,7 @@ class OnboardingScreen extends StatelessWidget {
         child: BlocBuilder<OnboardingCubit, OnboardingState>(
             builder: (context, state) {
           return CupertinoOnboarding(
+              bottomButtonColor: Theme.of(context).colorScheme.inversePrimary,
               onPressedOnLastPage: () async {
                 if (formKey.currentState!.validate()) {
                   await CacheHelper.saveData(
@@ -39,21 +41,23 @@ class OnboardingScreen extends StatelessWidget {
                 WhatsNewPage(
                   scrollPhysics: const BouncingScrollPhysics(),
                   title: const Text("What's New Template"),
-                  features:
-                      BlocProvider.of<OnboardingCubit>(context).featuresList,
+                  features: BlocProvider.of<OnboardingCubit>(context)
+                      .featuresList(context),
                 ),
-                const CupertinoOnboardingPage(
+                CupertinoOnboardingPage(
                   title: Text('Support Multi Language'),
                   body: Icon(
                     Icons.language,
                     size: 200,
+                    color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
-                const CupertinoOnboardingPage(
+                CupertinoOnboardingPage(
                   title: Text('Great Look in Light and Dark Mode'),
                   body: Icon(
                     CupertinoIcons.sun_max,
                     size: 200,
+                    color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
                 const CupertinoOnboardingPage(
@@ -70,10 +74,11 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   body: Wrap(
                     children: [
-                      const Center(
+                      Center(
                         child: Icon(
                           CupertinoIcons.profile_circled,
                           size: 200,
+                          color: Theme.of(context).colorScheme.inversePrimary,
                         ),
                       ),
                       Form(
