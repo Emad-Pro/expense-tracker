@@ -3,27 +3,27 @@ part of 'expense_cubit.dart';
 class ExpenseState extends Equatable {
   final RequestState getDatabaseExpansesState;
   final RequestState addExpenseItem;
-  final List<ExpanseModelGetData>? getDatabaseExpansesModel;
-  final List<ExpanseModelGetData>? getDataWithQureybaseExpansesModel;
+  final List<ExpensesModel>? getExpansesModel;
+
   final double totalAmount;
   final String messageExpansesText;
   final List<String>? getMonthsExpense;
   final List<String>? categoriesItems;
   final Map<String, double>? categoriesTotalItem;
-  const ExpenseState(
-      {this.getDatabaseExpansesState = RequestState.loading,
-      this.addExpenseItem = RequestState.loading,
-      this.getDatabaseExpansesModel,
-      this.getDataWithQureybaseExpansesModel,
-      this.messageExpansesText = '',
-      this.totalAmount = 0,
-      this.getMonthsExpense,
-      this.categoriesItems,
-      this.categoriesTotalItem});
+
+  const ExpenseState({
+    this.getDatabaseExpansesState = RequestState.loading,
+    this.addExpenseItem = RequestState.loading,
+    this.getExpansesModel,
+    this.messageExpansesText = '',
+    this.totalAmount = 0,
+    this.getMonthsExpense,
+    this.categoriesItems,
+    this.categoriesTotalItem,
+  });
   ExpenseState copyWith({
     RequestState? getDatabaseExpansesState,
-    List<ExpanseModelGetData>? getDatabaseExpansesModel,
-    List<ExpanseModelGetData>? getDataWithQureybaseExpansesModel,
+    List<ExpensesModel>? getExpansesModel,
     double? totalAmount,
     String? messageExpansesText,
     List<String>? getMonthsExpense,
@@ -33,14 +33,11 @@ class ExpenseState extends Equatable {
   }) {
     return ExpenseState(
         messageExpansesText: messageExpansesText ?? this.messageExpansesText,
-        getDatabaseExpansesModel:
-            getDatabaseExpansesModel ?? this.getDatabaseExpansesModel,
-        getDataWithQureybaseExpansesModel: getDataWithQureybaseExpansesModel ??
-            this.getDataWithQureybaseExpansesModel,
+        getExpansesModel: getExpansesModel ?? this.getExpansesModel,
         getDatabaseExpansesState:
             getDatabaseExpansesState ?? this.getDatabaseExpansesState,
         totalAmount: totalAmount ?? this.totalAmount,
-        getMonthsExpense: getMonthsExpense ?? this.getMonthsExpense,
+        getMonthsExpense: this.getMonthsExpense ?? getMonthsExpense,
         categoriesItems: categoriesItems ?? this.categoriesItems,
         categoriesTotalItem: categoriesTotalItem ?? this.categoriesTotalItem,
         addExpenseItem: addExpenseItem ?? this.addExpenseItem);
@@ -48,7 +45,7 @@ class ExpenseState extends Equatable {
 
   @override
   List<Object?> get props => [
-        getDatabaseExpansesModel,
+        getExpansesModel,
         getDatabaseExpansesState,
         messageExpansesText,
         totalAmount,
@@ -56,6 +53,5 @@ class ExpenseState extends Equatable {
         categoriesItems,
         categoriesTotalItem,
         addExpenseItem,
-        getDataWithQureybaseExpansesModel
       ];
 }

@@ -1,16 +1,18 @@
 import 'package:bloc/bloc.dart';
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
+import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
 import 'package:expense_tracker/future/expense/pre/view/expense_page.dart';
+import 'package:expense_tracker/future/search/pre/view/search_page.dart';
 import 'package:expense_tracker/future/settingScreen/pre/view/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(const HomeState());
-
+  HomeCubit({this.expanseModelGetData}) : super(const HomeState());
+  final List<ExpensesModel>? expanseModelGetData;
   // صفحة العرض الخاصة ب bottomBar
   late PageController pageController; // controller View Page
   bool isbottomsheetshown = false; //المتغير الخاص بحالة فتح bottomSheet
@@ -28,35 +30,28 @@ class HomeCubit extends Cubit<HomeState> {
   List<BarItem> barItems(context) => [
         BarItem(
             icon: Icons.home,
-            title: 'Home',
+            title: 'Home'.tr(context),
             activeColor: Colors.blue,
             inactiveColor: Theme.of(context).colorScheme.onBackground),
         BarItem(
-            icon: Icons.category_outlined,
-            title: 'Digram',
+            icon: CupertinoIcons.search,
+            title: 'Search'.tr(context),
             activeColor: Colors.blue,
             inactiveColor: Theme.of(context).colorScheme.onBackground),
         BarItem(
             icon: Icons.tune_rounded,
-            title: 'Settings',
+            title: 'Settings'.tr(context),
             activeColor: Colors.blue,
             inactiveColor: Theme.of(context).colorScheme.onBackground),
 
         /// Add more BarItem if you want
       ];
 //صفحات bottomNavigationBar
-  List<Widget> listOfWidget = <Widget>[
-    const ExpensePage(),
-    Container(
-      alignment: Alignment.center,
-      child: const Icon(
-        Icons.search,
-        size: 56,
-        color: Colors.brown,
-      ),
-    ),
-    const SettingPage(),
-  ];
+  List<Widget> listOfWidget() => [
+        const ExpensePage(),
+        SearchPage(expanseModelGetData: expanseModelGetData),
+        const SettingPage(),
+      ];
   //تهيئة صفحات bottomBar
   void initState() {
     pageController = PageController(initialPage: selectedIndex);

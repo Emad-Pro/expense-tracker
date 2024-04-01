@@ -20,7 +20,7 @@ class CustomListTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      trailing: widget ?? const Icon(Icons.keyboard_arrow_right),
+      trailing: widget ?? Icon(Icons.keyboard_arrow_right),
       title: Text(
         title,
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

@@ -1,25 +1,17 @@
-import 'package:expense_tracker/future/expense/data/model/expanse_model_getData.dart';
+import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
+import 'package:flutter/foundation.dart';
+
 import 'package:intl/intl.dart';
 
-DateTime? _parseDate(String? dateString) {
-  if (dateString == null || dateString.isEmpty) {
-    return null;
-  }
-  try {
-    return DateFormat('dd , MMM, yyy').parse(dateString);
-  } catch (e) {
-    return null;
-  }
-}
-
-List<String> getMonthsYears(List<ExpanseModelGetData> list) {
+List<String> getMonthsYears(List<ExpensesModel> list) {
   Set<String> uniqueMonthsYears = {};
-  for (ExpanseModelGetData item in list) {
-    DateTime? date = _parseDate(item.date);
-    if (date != null) {
-      uniqueMonthsYears.add(DateFormat('MMM, yyy').format(date));
-    }
+  for (ExpensesModel item in list) {
+    DateTime? date = item.date;
+    print(item.date);
+
+    uniqueMonthsYears.add(DateFormat('MMM, yyy').format(date!));
   }
+
   return uniqueMonthsYears.toList();
 }
 
@@ -31,9 +23,9 @@ String convertDateToYearMounth(String date) {
   return dateConverted;
 }
 
-List<String> getCategoriesItem(List<ExpanseModelGetData> list) {
+List<String> getCategoriesItem(List<ExpensesModel> list) {
   Set<String> uniqueCategories = {};
-  for (ExpanseModelGetData item in list) {
+  for (ExpensesModel item in list) {
     if (item.categories != null) {
       uniqueCategories.add(item.categories!);
     }
@@ -41,21 +33,37 @@ List<String> getCategoriesItem(List<ExpanseModelGetData> list) {
   return uniqueCategories.toList();
 }
 
-Map<String, double> calculateCategoryTotals(
-    List<ExpanseModelGetData> expenses) {
+Map<String, double> calculateCategoryTotals(List<ExpensesModel> expenses) {
   Map<String, double> categoryTotals = {};
 
   for (var expense in expenses) {
     if (expense.categories != null && expense.amount != null) {
       try {
-        double amount = double.parse(expense.amount!);
+        double amount = expense.amount!;
         categoryTotals.update(expense.categories!, (value) => value + amount,
             ifAbsent: () => amount);
       } on FormatException catch (e) {
-        print("خطأ في تنسيق المبلغ: ${expense.amount}");
+        if (kDebugMode) {
+          print("خطأ في تنسيق المبلغ: ${expense.amount}");
+        }
       }
     }
   }
   print(categoryTotals);
   return categoryTotals;
+}
+
+String convertDateToDayYearMounth(String date) {
+  String dateConverted = '';
+
+  DateTime? dateTime = DateFormat('yyyy-MM-dd').parse(date);
+  dateConverted = DateFormat.yMMMd().format(dateTime).toString();
+  return dateConverted;
+}
+
+String convertTime(String time) {
+  DateTime? dateTime = DateTime.parse(time);
+  final dateFormat = DateFormat('h:m');
+  final formattedDateTime = dateFormat.format(dateTime);
+  return formattedDateTime;
 }

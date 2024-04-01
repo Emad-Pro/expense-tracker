@@ -1,4 +1,4 @@
-import 'package:expense_tracker/future/expense/data/model/expense_model.dart';
+import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,11 +35,11 @@ floatingActionButtonPressd(context) {
           ),
           MaterialButton(
             onPressed: () {
-              BlocProvider.of<ExpenseCubit>(context).addNewDataFromDatabase(
+              /*   BlocProvider.of<ExpenseCubit>(context).addNewDataFromDatabase(
                   ExpanseModel.fromMap({
                 "name": titleController.text,
                 "amount": amountController.text
-              }));
+              }));*/
             },
             child: const Text("Save"),
           )

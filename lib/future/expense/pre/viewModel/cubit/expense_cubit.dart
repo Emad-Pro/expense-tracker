@@ -1,69 +1,62 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:expense_tracker/core/database/sqflite_service.dart';
+import 'package:expense_tracker/core/database/isar_service.dart';
+
 import 'package:expense_tracker/core/enum/enum.dart';
 import 'package:expense_tracker/core/method_calc_amount.dart';
 import 'package:expense_tracker/core/method_date.dart';
-import 'package:expense_tracker/future/expense/data/model/expanse_model_getData.dart';
-import 'package:expense_tracker/future/expense/data/model/expense_model.dart';
-import 'package:intl/intl.dart';
+
+import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
 
 part 'expense_state.dart';
 
 class ExpenseCubit extends Cubit<ExpenseState> {
-  ExpenseCubit(this.databaseSqfliteService) : super(const ExpenseState());
-  final DatabaseSqfliteService databaseSqfliteService;
+  ExpenseCubit(this.isarDataBase) : super(const ExpenseState());
+  final IsarDataBase isarDataBase;
   List<String> categories = ['Food', 'Medical', 'Shopping', 'Other'];
-
-  getDataQuaryFromDataBase(String date) async {
-    await databaseSqfliteService.getDataFromQuary(date).then(
-      (value) {
-        emit(
-          state.copyWith(
-              categoriesTotalItem: calculateCategoryTotals(value),
-              categoriesItems: getCategoriesItem(value),
-              totalAmount: calcTotalAmountMethod(value),
-              getDatabaseExpansesModel: value.reversed.toList(),
-              getDatabaseExpansesState: RequestState.sucess,
-              getDataWithQureybaseExpansesModel: value.reversed.toList()),
-        );
-      },
-    ).catchError((onError) {
-      emit(
-        state.copyWith(
-          getDatabaseExpansesState: RequestState.sucess,
-          messageExpansesText: onError.toString(),
-        ),
-      );
-    });
+  List<String> getMonthsYear = [];
+  String initialValue = '';
+  getDataInit({int? month, int? year}) {
+    if (month != null && year != null) {
+      getDataFromDatabaseWithMounth(month, year);
+    } else {
+      getDataFromDatabase();
+    }
   }
 
   getDataFromDatabase() async {
-    await databaseSqfliteService.getAllData().then(
-      (value) {
-        emit(
-          state.copyWith(
-            categoriesTotalItem: calculateCategoryTotals(value),
-            categoriesItems: getCategoriesItem(value),
-            totalAmount: calcTotalAmountMethod(value),
-            getDataWithQureybaseExpansesModel: value.reversed.toList(),
-            getDatabaseExpansesState: RequestState.sucess,
-            getMonthsExpense: getMonthsYears(value),
-          ),
-        );
-      },
-    ).catchError((onError) {
+    await isarDataBase.getData().then((value) {
+      getMonthsYear = getMonthsYears(value);
+      getMonthsYear.add("all");
       emit(
         state.copyWith(
+          categoriesTotalItem: calculateCategoryTotals(value),
+          categoriesItems: getCategoriesItem(value),
+          totalAmount: calcTotalAmountMethod(value),
+          getExpansesModel: value.reversed.toList(),
           getDatabaseExpansesState: RequestState.sucess,
-          messageExpansesText: onError.toString(),
         ),
       );
     });
   }
 
-  addNewDataFromDatabase(ExpanseModel expanseModel) async {
-    await databaseSqfliteService.addData(expanseModel).then(
+  getDataFromDatabaseWithMounth(int month, int year) async {
+    await isarDataBase.getDataWithMounth(year, month).then((value) {
+      emit(
+        state.copyWith(
+          categoriesTotalItem: calculateCategoryTotals(value),
+          categoriesItems: getCategoriesItem(value),
+          totalAmount: calcTotalAmountMethod(value),
+          getExpansesModel: value.reversed.toList(),
+          getDatabaseExpansesState: RequestState.sucess,
+          // getMonthsExpense: getMonthsYears(value),
+        ),
+      );
+    });
+  }
+
+  addNewDataFromDatabase(ExpensesModel expanseModel) async {
+    await isarDataBase.addData(expanseModel).then(
       (value) {
         emit(state.copyWith(addExpenseItem: RequestState.sucess));
         getDataFromDatabase();
@@ -73,9 +66,9 @@ class ExpenseCubit extends Cubit<ExpenseState> {
     );
   }
 
-  updateDataFromDatabase(ExpanseModelGetData expanseModelGetData) async {
-    await databaseSqfliteService
-        .updateData(expanseModelGetData)
+  updateDataFromDatabase(ExpensesModel expensesModel) async {
+    await isarDataBase
+        .updateData(expensesModel)
         .then(
           (value) {},
         )
@@ -85,7 +78,7 @@ class ExpenseCubit extends Cubit<ExpenseState> {
   }
 
   deleteDataFromDatabase(int id) async {
-    await databaseSqfliteService
+    await isarDataBase
         .deleteData(id)
         .then(
           (value) {},
@@ -95,5 +88,3 @@ class ExpenseCubit extends Cubit<ExpenseState> {
         );
   }
 }
-
-converdate() {}

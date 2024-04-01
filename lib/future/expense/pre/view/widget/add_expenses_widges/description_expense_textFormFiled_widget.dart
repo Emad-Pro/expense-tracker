@@ -1,3 +1,4 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionExpenseTextFormFiledWidget extends StatelessWidget {
@@ -16,10 +17,10 @@ class DescriptionExpenseTextFormFiledWidget extends StatelessWidget {
         child: TextFormField(
           controller: descriptionController,
           validator: validator,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            labelText: 'Description',
+            labelText: 'Description'.tr(context),
           ),
         ),
       ),

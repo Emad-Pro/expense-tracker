@@ -1,3 +1,4 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,6 @@ class DropDownCategoriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    categoriesController.text =
-        BlocProvider.of<ExpenseCubit>(context).categories.last;
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -22,24 +21,28 @@ class DropDownCategoriesWidget extends StatelessWidget {
           iconSize: 20,
           name: 'cateogires',
           onSaved: (value) {
-            categoriesController.text = value!;
+            categoriesController.text =
+                BlocProvider.of<ExpenseCubit>(context).categories.last;
           },
           onChanged: (value) {
             categoriesController.text = value!;
           },
+          validator: (value) {
+            categoriesController.text = value!;
+          },
           initialValue: BlocProvider.of<ExpenseCubit>(context).categories.last,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             border: InputBorder.none,
-            labelText: "Select option",
-            hintText: "Category",
+            labelText: "Select option".tr(context),
+            hintText: "Category".tr(context),
             alignLabelWithHint: true,
           ),
           items: BlocProvider.of<ExpenseCubit>(context)
               .categories
-              .map((gender) => DropdownMenuItem(
+              .map((category) => DropdownMenuItem(
                     alignment: AlignmentDirectional.center,
-                    value: gender,
-                    child: Text(gender),
+                    value: category,
+                    child: Text(category.tr(context)),
                   ))
               .toList(),
         ),

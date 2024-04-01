@@ -1,28 +1,38 @@
 import 'package:expense_tracker/core/sharedPreferences/cacheHelper.dart';
+import 'package:expense_tracker/future/settingScreen/pre/viewModel/cubit/setting_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ThemeService {
-  ThemeData lightMode = ThemeData(
-    useMaterial3: true,
-    brightness: Brightness.light,
-    colorScheme: ColorScheme.light(
-      background: Colors.grey.shade300,
-      primary: Colors.grey.shade200,
-      secondary: Colors.grey.shade400,
-      inversePrimary: Colors.grey.shade800,
-    ),
-  );
+  ThemeData lightMode(context) => ThemeData(
+        useMaterial3: true,
+        fontFamily:
+            BlocProvider.of<SettingCubit>(context).locale!.languageCode == "en"
+                ? "Rubic"
+                : "Cairo",
+        brightness: Brightness.light,
+        colorScheme: ColorScheme.light(
+          background: Colors.grey.shade300,
+          primary: Colors.grey.shade200,
+          secondary: Colors.grey.shade400,
+          inversePrimary: Colors.grey.shade800,
+        ),
+      );
 
-  ThemeData darkMode = ThemeData(
-    useMaterial3: true,
-    brightness: Brightness.dark,
-    colorScheme: ColorScheme.dark(
-      background: Colors.grey.shade900,
-      primary: Colors.grey.shade800,
-      secondary: Colors.grey.shade700,
-      inversePrimary: Colors.grey.shade300,
-    ),
-  );
+  ThemeData darkMode(context) => ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        fontFamily:
+            BlocProvider.of<SettingCubit>(context).locale!.languageCode == "en"
+                ? "Rubic"
+                : "Cairo",
+        colorScheme: ColorScheme.dark(
+          background: Colors.grey.shade900,
+          primary: Colors.grey.shade800,
+          secondary: Colors.grey.shade700,
+          inversePrimary: Colors.grey.shade300,
+        ),
+      );
   static bool darkModeValue = false;
   static Future themeInit() async {
     if (CacheHelper.getSaveData(key: "darkMode") == null) {

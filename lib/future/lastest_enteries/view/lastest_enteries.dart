@@ -1,3 +1,4 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/future/expense/pre/view/widget/build_item_listView_lastTest_enteries.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class LastestEnteries extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Lastest Enteries"),
+        title: Text("Lastest Enteries".tr(context)),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
@@ -21,11 +22,10 @@ class LastestEnteries extends StatelessWidget {
                 height: 5,
               );
             },
-            itemCount: expenseState.getDatabaseExpansesModel!.length,
+            itemCount: expenseState.getExpansesModel!.length,
             itemBuilder: (context, index) {
               return BuildItemListViewLastTestEnteries(
-                  expanseModelGetData:
-                      expenseState.getDatabaseExpansesModel![index]);
+                  expensesModel: expenseState.getExpansesModel![index]);
             }),
       ),
     );

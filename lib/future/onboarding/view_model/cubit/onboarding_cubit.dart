@@ -8,7 +8,7 @@ part 'onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
   OnboardingCubit() : super(OnboardingInitial());
-
+  String selectedCurrency = 'USD';
   List<Widget> featuresList(context) => [
         WhatsNewFeature(
           title: const Text(' Ease of use'),
@@ -38,4 +38,9 @@ class OnboardingCubit extends Cubit<OnboardingState> {
           ),
         ),
       ];
+  List<String> currency = ["EGP", "USD", "SYP"];
+changeCurrencyMethod(String value){
+  selectedCurrency=value;
+  emit(ChangeCurrencyValueState());
+}
 }

@@ -1,7 +1,9 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/future/categoires/view/categories_screen.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class CustomCategoriesWidget extends StatelessWidget {
   CustomCategoriesWidget(
@@ -33,7 +35,7 @@ class CustomCategoriesWidget extends StatelessWidget {
               children: [
                 Card(
                   color: Theme.of(context).colorScheme.tertiaryContainer,
-                  child: const SizedBox(
+                  child: SizedBox(
                     width: 40,
                     height: 40,
                   ),
@@ -61,10 +63,10 @@ class CustomCategoriesWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 14,
+              height: 12,
             ),
             Text(
-              categoriesMap.key,
+              categoriesMap.key.tr(context),
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
             ),
             const SizedBox(

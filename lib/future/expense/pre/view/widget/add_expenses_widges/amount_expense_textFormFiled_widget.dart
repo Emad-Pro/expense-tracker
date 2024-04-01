@@ -1,3 +1,4 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,10 +20,10 @@ class AmountExpenseTextFormFiledWidget extends StatelessWidget {
             FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d*$')),
           ],
           controller: amountController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
-            labelText: 'Enter Amount',
+            labelText: 'Enter Amount'.tr(context),
           ),
         ),
       ),

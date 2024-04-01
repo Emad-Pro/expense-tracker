@@ -1,4 +1,4 @@
-class ExpanseModelGetData {
+/*class ExpanseModelGetData {
   final int id;
   final String description;
   final String? amount;
@@ -34,3 +34,4 @@ class ExpanseModelGetData {
         categories: map['categories']);
   }
 }
+*/

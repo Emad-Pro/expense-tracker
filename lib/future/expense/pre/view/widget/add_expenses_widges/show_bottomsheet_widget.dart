@@ -1,3 +1,4 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/amount_expense_textFormFiled_widget.dart';
 import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/button_add_expense_widget.dart';
 import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/dateAndTimePicer_expense_widget.dart';
@@ -37,11 +38,12 @@ class ShowBottomSheetWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "add a new expense".toUpperCase(),
+              "add a new expense".tr(context),
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
             Text(
-              "enter the details of your expense to help you track your spending",
+              "enter the details of your expense to help you track your spending"
+                  .tr(context),
               style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey[600],

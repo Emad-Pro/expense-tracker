@@ -1,3 +1,4 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/future/expense/pre/view/widget/build_listView_lastTest_enteries.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:expense_tracker/future/lastest_enteries/view/lastest_enteries.dart';
@@ -17,7 +18,7 @@ class LastTestEnteriesWidet extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Lastest Enteries",
+                "Lastest Enteries".tr(context),
                 style: TextStyle(
                     fontSize: MediaQuery.of(context).textScaler.scale(16),
                     fontWeight: FontWeight.w600),
@@ -29,7 +30,7 @@ class LastTestEnteriesWidet extends StatelessWidget {
                       builder: (context) =>
                           LastestEnteries(expenseState: expenseState)));
                 },
-                child: const Text("View all"),
+                child: Text("View all".tr(context)),
               )
             ],
           ),

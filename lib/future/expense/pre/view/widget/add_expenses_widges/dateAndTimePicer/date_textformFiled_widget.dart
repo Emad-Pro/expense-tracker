@@ -41,14 +41,12 @@ class DateFormFiledWidget extends StatelessWidget {
                         color: Colors.blue,
                       ),
                       onChange: (index) {
-                        dateController.text = DateFormat('dd , MMM, yyy')
-                            .format(index)
-                            .toString();
+                        dateController.text =
+                            DateFormat('dd , MMM, yyy').format(index);
                       },
                       onSubmit: (index) {
-                        dateController.text = DateFormat('dd , MMM, yyy')
-                            .format(index)
-                            .toString();
+                        dateController.text =
+                            DateFormat('dd , MMM, yyy').format(index);
                       },
                       bottomPickerTheme: BottomPickerTheme.orange,
                     ).show(context);

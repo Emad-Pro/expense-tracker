@@ -1,3 +1,5 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
+import 'package:expense_tracker/core/database/isar_service.dart';
 import 'package:expense_tracker/core/profile_service/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +18,21 @@ class CustomAppbar extends StatelessWidget {
           .copyWith(left: 15, top: 10, bottom: 10, right: 10),
       child: Row(
         children: [
+          ElevatedButton(
+              onPressed: () {
+                IsarDataBaseImp().deleteAllData();
+              },
+              child: Text("clear")),
           Initicon(
             backgroundColor: const Color.fromARGB(255, 74, 20, 140),
             text: ProfileService.userName!,
           ),
           Padding(
-            padding: MediaQuery.of(context).padding.copyWith(left: 10.0),
+            padding: MediaQuery.of(context)
+                .padding
+                .copyWith(left: 10.0, right: 10.0),
             child: Text(
-              "Hello, ${ProfileService.userName}",
+              "${"welcome".tr(context).toUpperCase()}, ${ProfileService.userName}",
               style: TextStyle(
                   fontSize: MediaQuery.of(context).textScaler.scale(16),
                   fontWeight: FontWeight.bold),

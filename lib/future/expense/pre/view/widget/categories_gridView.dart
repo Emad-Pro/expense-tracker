@@ -1,3 +1,4 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/future/expense/pre/view/widget/custom_categories_widget.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class CategoriesGridView extends StatelessWidget {
           padding:
               MediaQuery.of(context).padding.copyWith(top: 20.0, bottom: 10),
           child: Text(
-            "Categories",
+            "Categories".tr(context),
             style: TextStyle(
                 fontSize: MediaQuery.of(context).textScaler.scale(16),
                 fontWeight: FontWeight.w600),
@@ -24,9 +25,9 @@ class CategoriesGridView extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 1.4,
+              childAspectRatio: 1.3,
               crossAxisCount: 2,
-              mainAxisExtent: MediaQuery.of(context).size.height * 0.18,
+              mainAxisExtent: MediaQuery.of(context).size.height * 0.22,
               mainAxisSpacing: 25,
               crossAxisSpacing: 25),
           children: expenseState.categoriesTotalItem!.entries.map((e) {

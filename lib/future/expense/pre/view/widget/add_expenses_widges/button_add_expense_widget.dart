@@ -1,7 +1,9 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/enum/enum.dart';
-import 'package:expense_tracker/future/expense/data/model/expense_model.dart';
+import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../viewModel/cubit/expense_cubit.dart';
 
@@ -35,13 +37,15 @@ class ButtonAddExpenseWidget extends StatelessWidget {
                 onPressed: () async {
                   if (formkey.currentState!.validate()) {
                     await BlocProvider.of<ExpenseCubit>(context)
-                        .addNewDataFromDatabase(ExpanseModel.fromMap({
-                      'description': descriptionController.text,
-                      'amount': amountController.text,
-                      'date': dateController.text,
-                      'categories': categoriesController.text,
-                      'time': timeController.text,
-                    }));
+                        .addNewDataFromDatabase(
+                      ExpensesModel()
+                        ..amount = double.parse(amountController.text)
+                        ..categories = categoriesController.text
+                        ..time = DateFormat.Hm().parse(timeController.text)
+                        ..date = DateFormat('dd , MMM, yyy')
+                            .parse(dateController.text)
+                        ..description = descriptionController.text,
+                    );
                     descriptionController.clear();
                     amountController.clear();
                     dateController.clear();
@@ -50,7 +54,7 @@ class ButtonAddExpenseWidget extends StatelessWidget {
                     Navigator.pop(context);
                   }
                 },
-                child: const Text("Add Expense"),
+                child: Text("Add Expense".tr(context)),
               ),
             ),
           ),

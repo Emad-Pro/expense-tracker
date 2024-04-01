@@ -23,7 +23,8 @@ class HomeScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     controller:
                         BlocProvider.of<HomeCubit>(context).pageController,
-                    children: BlocProvider.of<HomeCubit>(context).listOfWidget,
+                    children:
+                        BlocProvider.of<HomeCubit>(context).listOfWidget(),
                   ),
                 ),
               ],
@@ -38,12 +39,16 @@ class HomeScreen extends StatelessWidget {
             selectedIndex: BlocProvider.of<HomeCubit>(context).selectedIndex,
             barItems: BlocProvider.of<HomeCubit>(context).barItems(context),
           ),
-          floatingActionButton: CustomBottomSheetWidget(
-              scaffoldkey: BlocProvider.of<HomeCubit>(context).scaffoldkey),
+          floatingActionButton:
+              BlocProvider.of<HomeCubit>(context).selectedIndex == 0
+                  ? CustomBottomSheetWidget(
+                      scaffoldkey:
+                          BlocProvider.of<HomeCubit>(context).scaffoldkey)
+                  : null,
           floatingActionButtonLocation:
               BlocProvider.of<HomeCubit>(context).showBottomSheet
                   ? FloatingActionButtonLocation.endDocked
-                  : FloatingActionButtonLocation.centerDocked,
+                  : FloatingActionButtonLocation.startFloat,
         );
       },
     );

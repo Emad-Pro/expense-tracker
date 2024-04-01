@@ -1,13 +1,11 @@
-import 'package:expense_tracker/future/expense/data/model/expanse_model_getData.dart';
+import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
 
 double calcTotalAmountMethod(
-  List<ExpanseModelGetData> value,
+  List<ExpensesModel> value,
 ) {
   double totalAmount = 0;
   for (var expense in value) {
-    if (expense.amount != null) {
-      totalAmount += double.parse(expense.amount!);
-    }
+    totalAmount += expense.amount!;
   }
   return totalAmount;
 }

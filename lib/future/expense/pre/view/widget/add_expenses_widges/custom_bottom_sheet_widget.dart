@@ -14,9 +14,8 @@ class CustomBottomSheetWidget extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldkey;
   @override
   Widget build(BuildContext context) {
-    dateController.text =
-        DateFormat('dd , MMM, yyy').format(DateTime.now()).toString();
-    timeController.text = DateFormat.Hm().format(DateTime.now()).toString();
+    dateController.text = DateFormat('dd , MMM, yyy').format(DateTime.now());
+    timeController.text = DateFormat.Hm().format(DateTime.now());
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
