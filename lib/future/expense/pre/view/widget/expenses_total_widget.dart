@@ -1,6 +1,9 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
-import 'package:expense_tracker/core/convert_month_and_year_to_this_month.dart';
-import 'package:expense_tracker/core/parse_year_and_month_to_Int.dart';
+import 'package:expense_tracker/core/method/convert_month_and_year_to_this_month.dart';
+import 'package:expense_tracker/core/method/parse_year_and_month_to_Int.dart';
+
+import 'package:expense_tracker/core/profile_service/profile.dart';
+import 'package:expense_tracker/future/expense/data/model/date_model.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +41,8 @@ class ExpensesTotalWidget extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                "${expenseState.totalAmount} \$",
+                "${expenseState.totalAmount} ${ProfileService.currancy.toString().tr(context)}",
+                textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: MediaQuery.of(context).textScaler.scale(30),
                 ),
@@ -51,13 +55,11 @@ class ExpensesTotalWidget extends StatelessWidget {
             child: FormBuilderDropdown<String>(
               validator: (value) {},
               onChanged: (value) async {
-                if (value == "all") {
-                  BlocProvider.of<ExpenseCubit>(context).getDataFromDatabase();
-                } else {
-                  BlocProvider.of<ExpenseCubit>(context).getDataInit(
-                      month: parseDate(value!)["month"]!,
-                      year: parseDate(value)["year"]!);
-                }
+                BlocProvider.of<ExpenseCubit>(context).getDataFromDatabase(
+                  dateModel: DateModel()
+                    ..month = parseDate(value!)["month"]!
+                    ..year = parseDate(value!)["year"]!,
+                );
               },
               isDense: false,
               initialValue:

@@ -1,6 +1,5 @@
 import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
 import 'package:expense_tracker/future/search/data/model/expenses_search_model.dart';
-import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -10,7 +9,7 @@ abstract class IsarDataBase {
   Future<List<ExpensesModel>> getData();
   Future<void> updateData(ExpensesModel expensesModel);
   Future<void> deleteData(int id);
-  Future<List<ExpensesModel>> getDataWithMounth(int year, int month);
+  Future<List<ExpensesModel>> getDataWithMounth({int? year, int? month});
   Future<List<ExpensesModel>>? qureyExpenseMultiple(
       ExpenseSearchModel expenseSearchModel);
 }
@@ -27,7 +26,6 @@ class IsarDataBaseImp extends IsarDataBase {
   // Create A Note and save to db
   @override
   Future<void> addData(ExpensesModel textFromUser) async {
-    print(textFromUser.description);
     final newNote = ExpensesModel() = textFromUser;
     await isar
         .writeTxn(() => isar.expensesModels.put(newNote))
@@ -58,8 +56,8 @@ class IsarDataBaseImp extends IsarDataBase {
   }
 
   @override
-  Future<List<ExpensesModel>> getDataWithMounth(int year, int month) async {
-    final startDate = DateTime(year, month, 1);
+  Future<List<ExpensesModel>> getDataWithMounth({int? year, int? month}) async {
+    final startDate = DateTime(year!, month!, 1);
     final endDate = DateTime(year, month, 31);
 
     final expensesModel = await isar.expensesModels
@@ -82,7 +80,7 @@ class IsarDataBaseImp extends IsarDataBase {
             expenseSearchModel.startAmount, expenseSearchModel.endAmount)
         .dateBetween(expenseSearchModel.endDate, expenseSearchModel.startDate)
         .findAll();
-    print(expensesModel.length);
+
     return expensesModel;
   }
 

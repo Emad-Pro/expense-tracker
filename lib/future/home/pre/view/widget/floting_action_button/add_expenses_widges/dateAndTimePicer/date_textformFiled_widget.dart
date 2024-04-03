@@ -1,32 +1,36 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class TimeTextFormfiledWidget extends StatelessWidget {
-  final TextEditingController timeController;
+class DateFormFiledWidget extends StatelessWidget {
+  final TextEditingController dateController;
 
-  const TimeTextFormfiledWidget({super.key, required this.timeController});
+  const DateFormFiledWidget({super.key, required this.dateController});
   @override
   Widget build(BuildContext context) {
     return Card(
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.25,
+        width: MediaQuery.of(context).size.width * 0.39,
         child: TextFormField(
           readOnly: true,
           decoration: InputDecoration(
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
-              hintText: "Enter Time",
+              hintText: "Enter Date",
               prefixIcon: IconButton(
-                  icon: const Icon(Icons.access_time_sharp),
+                  icon: const Icon(Icons.date_range),
                   onPressed: () {
-                    BottomPicker.time(
+                    BottomPicker.date(
                       closeIconColor:
                           Theme.of(context).colorScheme.onBackground,
                       backgroundColor: Theme.of(context).colorScheme.background,
-                      title: 'Set your Expenses time',
-                      initialTime: Time.now(),
+                      title: 'Set your Expenses Date'.tr(context),
+                      dateOrder: DatePickerDateOrder.dmy,
+                      maxDateTime: DateTime.now(),
+                      minDateTime: DateTime(1980),
                       pickerTextStyle: const TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -38,17 +42,17 @@ class TimeTextFormfiledWidget extends StatelessWidget {
                         color: Colors.blue,
                       ),
                       onChange: (index) {
-                        timeController.text =
-                            DateFormat.Hm().format(index).toString();
+                        dateController.text =
+                            DateFormat('dd , MMM, yyy').format(index);
                       },
                       onSubmit: (index) {
-                        timeController.text =
-                            DateFormat.Hm().format(index).toString();
+                        dateController.text =
+                            DateFormat('dd , MMM, yyy').format(index);
                       },
                       bottomPickerTheme: BottomPickerTheme.orange,
                     ).show(context);
                   })),
-          controller: timeController,
+          controller: dateController,
         ),
       ),
     );

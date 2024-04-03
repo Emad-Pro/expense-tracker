@@ -1,7 +1,6 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
-import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
+import 'package:expense_tracker/core/app_constanse.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class DropDownCategoriesWidget extends StatelessWidget {
@@ -21,8 +20,7 @@ class DropDownCategoriesWidget extends StatelessWidget {
           iconSize: 20,
           name: 'cateogires',
           onSaved: (value) {
-            categoriesController.text =
-                BlocProvider.of<ExpenseCubit>(context).categories.last;
+            categoriesController.text = AppConstanse.categories.last;
           },
           onChanged: (value) {
             categoriesController.text = value!;
@@ -30,15 +28,14 @@ class DropDownCategoriesWidget extends StatelessWidget {
           validator: (value) {
             categoriesController.text = value!;
           },
-          initialValue: BlocProvider.of<ExpenseCubit>(context).categories.last,
+          initialValue: AppConstanse.categories.last,
           decoration: InputDecoration(
             border: InputBorder.none,
             labelText: "Select option".tr(context),
             hintText: "Category".tr(context),
             alignLabelWithHint: true,
           ),
-          items: BlocProvider.of<ExpenseCubit>(context)
-              .categories
+          items: AppConstanse.categories
               .map((category) => DropdownMenuItem(
                     alignment: AlignmentDirectional.center,
                     value: category,

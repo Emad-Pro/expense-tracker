@@ -1,11 +1,9 @@
 part of 'onboarding_cubit.dart';
 
- class OnboardingState  {
+class OnboardingState {
   const OnboardingState();
-
-  @override
-  List<Object> get props => [];
 }
 
- class OnboardingInitial extends OnboardingState {}
-class ChangeCurrencyValueState extends OnboardingState{}
+class OnboardingInitial extends OnboardingState {}
+
+class ChangeCurrencyValueState extends OnboardingState {}

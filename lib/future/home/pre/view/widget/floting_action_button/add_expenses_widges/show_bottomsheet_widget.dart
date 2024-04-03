@@ -1,9 +1,9 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/amount_expense_textFormFiled_widget.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/button_add_expense_widget.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/dateAndTimePicer_expense_widget.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/description_expense_textFormFiled_widget.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/dropdown_categories_widget.dart';
+import 'package:expense_tracker/future/home/pre/view/widget/floting_action_button/add_expenses_widges/amount_expense_textFormFiled_widget.dart';
+import 'package:expense_tracker/future/home/pre/view/widget/floting_action_button/add_expenses_widges/button_add_expense_widget.dart';
+import 'package:expense_tracker/future/home/pre/view/widget/floting_action_button/add_expenses_widges/dateAndTimePicer_expense_widget.dart';
+import 'package:expense_tracker/future/home/pre/view/widget/floting_action_button/add_expenses_widges/description_expense_textFormFiled_widget.dart';
+import 'package:expense_tracker/future/home/pre/view/widget/floting_action_button/add_expenses_widges/dropdown_categories_widget.dart';
 import 'package:flutter/material.dart';
 
 class ShowBottomSheetWidget extends StatelessWidget {
@@ -56,7 +56,7 @@ class ShowBottomSheetWidget extends StatelessWidget {
               amountController: amountController,
               validator: (p0) {
                 if (p0!.isEmpty) {
-                  return "please Enter Amount Expense";
+                  return "please Enter Amount Expense".tr(context);
                 } else {
                   return null;
                 }
@@ -68,7 +68,7 @@ class ShowBottomSheetWidget extends StatelessWidget {
             DescriptionExpenseTextFormFiledWidget(
                 validator: (p0) {
                   if (p0!.isEmpty) {
-                    return "please Enter Description Expense";
+                    return "please Enter Description Expense".tr(context);
                   } else {
                     return null;
                   }
@@ -81,9 +81,6 @@ class ShowBottomSheetWidget extends StatelessWidget {
                 categoriesController: categoriesController),
             DateAndTimePicerExpenseWidget(
                 dateController: dateController, timeController: timeController),
-            const SizedBox(
-              height: 10,
-            ),
             ButtonAddExpenseWidget(
                 descriptionController: descriptionController,
                 amountController: amountController,

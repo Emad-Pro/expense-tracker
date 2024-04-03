@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import '../../../viewModel/cubit/expense_cubit.dart';
+import '../../../../../../expense/pre/viewModel/cubit/expense_cubit.dart';
 
 class ButtonAddExpenseWidget extends StatelessWidget {
   const ButtonAddExpenseWidget(
@@ -28,12 +28,13 @@ class ButtonAddExpenseWidget extends StatelessWidget {
     return BlocBuilder<ExpenseCubit, ExpenseState>(
       builder: (context, state) {
         return Center(
-          child: SizedBox(
+          child: Container(
+            margin: EdgeInsetsDirectional.only(top: 0, bottom: 5),
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: MaterialButton(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.secondary,
                 onPressed: () async {
                   if (formkey.currentState!.validate()) {
                     await BlocProvider.of<ExpenseCubit>(context)

@@ -1,5 +1,5 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/build_item_listView_lastTest_enteries.dart';
+import 'package:expense_tracker/core/widget/build_item_listView_lastTest_enteries.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class LastestEnteries extends StatelessWidget {
         padding: const EdgeInsets.all(5.0),
         child: ListView.separated(
             separatorBuilder: (context, index) {
-              return SizedBox(
+              return const SizedBox(
                 height: 5,
               );
             },

@@ -1,6 +1,6 @@
 import 'package:expense_tracker/future/expense/pre/view/expense_page.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/add_expenses_widges/custom_bottom_sheet_widget.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/custom_appbar.dart';
+import 'package:expense_tracker/future/home/pre/view/widget/floting_action_button/add_expenses_widges/custom_bottom_sheet_widget.dart';
+import 'package:expense_tracker/core/widget/custom_appbar.dart';
 import 'package:expense_tracker/future/home/pre/view_model/cubit/home_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

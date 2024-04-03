@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 class ProfileService {
   static bool? boarding;
   static String? userName;
+  static String? currancy;
   static initProfile() async {
     boarding = await CacheHelper.getSaveData(key: 'boarding');
-
+    currancy = await CacheHelper.getSaveData(key: 'currancy');
     if (await CacheHelper.getSaveData(key: 'userName') != null) {
       userName = await CacheHelper.getSaveData(key: 'userName');
     }
-    print(boarding);
   }
 
   static Widget homewidget() {

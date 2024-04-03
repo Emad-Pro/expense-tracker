@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SearchAmountWidget extends StatelessWidget {
   const SearchAmountWidget(
@@ -17,9 +18,13 @@ class SearchAmountWidget extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       ),
       child: TextFormField(
+        keyboardType: TextInputType.numberWithOptions(decimal: true),
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d*$')),
+        ],
         controller: amountController,
         decoration: InputDecoration(
-            prefixIcon: Icon(Icons.attach_money_sharp),
+            prefixIcon: const Icon(Icons.attach_money_sharp),
             border: InputBorder.none,
             hintText: hintText),
       ),

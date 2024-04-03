@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
+import 'package:expense_tracker/future/categoires/view/categories_screen.dart';
 import 'package:expense_tracker/future/expense/pre/view/expense_page.dart';
 import 'package:expense_tracker/future/search/pre/view/search_page.dart';
 import 'package:expense_tracker/future/settingScreen/pre/view/setting_page.dart';
@@ -34,6 +35,11 @@ class HomeCubit extends Cubit<HomeState> {
             activeColor: Colors.blue,
             inactiveColor: Theme.of(context).colorScheme.onBackground),
         BarItem(
+            icon: Icons.category,
+            title: 'Categorys'.tr(context),
+            activeColor: Colors.blue,
+            inactiveColor: Theme.of(context).colorScheme.onBackground),
+        BarItem(
             icon: CupertinoIcons.search,
             title: 'Search'.tr(context),
             activeColor: Colors.blue,
@@ -49,6 +55,7 @@ class HomeCubit extends Cubit<HomeState> {
 //صفحات bottomNavigationBar
   List<Widget> listOfWidget() => [
         const ExpensePage(),
+        const CategoriesScreen(),
         SearchPage(expanseModelGetData: expanseModelGetData),
         const SettingPage(),
       ];

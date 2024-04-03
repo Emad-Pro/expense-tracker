@@ -1,6 +1,8 @@
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
-import 'package:expense_tracker/core/method_date.dart';
-import 'package:expense_tracker/future/expense/data/model/expanse_model_getData.dart';
+import 'package:expense_tracker/core/method/method_date.dart';
+import 'package:expense_tracker/core/profile_service/profile.dart';
+
 import 'package:expense_tracker/future/expense/pre/view/widget/custom_icons_stack_widget.dart';
 
 import 'package:flutter/material.dart';
@@ -42,7 +44,7 @@ class BuildItemListViewLastTestEnteries extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            "${expensesModel.amount} \$",
+            "${expensesModel.amount} ${ProfileService.currancy.toString().tr(context)}",
             style: const TextStyle(fontWeight: FontWeight.bold),
           )
         ],

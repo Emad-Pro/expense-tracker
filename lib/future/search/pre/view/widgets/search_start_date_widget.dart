@@ -1,5 +1,6 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
+import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -23,7 +24,7 @@ class SearchStartDateWidget extends StatelessWidget {
           BottomPicker.date(
             closeIconColor: Theme.of(context).colorScheme.onBackground,
             backgroundColor: Theme.of(context).colorScheme.background,
-            title: 'Set your Expenses DateTime',
+            title: 'Select the start date of your purchase'.tr(context),
             dateOrder: DatePickerDateOrder.dmy,
             maxDateTime: DateTime.now(),
             minDateTime: DateTime(1980),
@@ -38,21 +39,19 @@ class SearchStartDateWidget extends StatelessWidget {
               color: Colors.blue,
             ),
             onChange: (index) {
-              print(index.toString());
               startDateController.text = index.toString();
             },
             onSubmit: (index) {
-              print(index.toString());
               startDateController.text = index.toString();
             },
             bottomPickerTheme: BottomPickerTheme.orange,
           ).show(context);
         },
         controller: startDateController,
-        decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.date_range),
+        decoration: InputDecoration(
+            prefixIcon: const Icon(Icons.date_range),
             border: InputBorder.none,
-            hintText: "Start Date"),
+            hintText: "Start Date".tr(context)),
       ),
     );
   }

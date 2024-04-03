@@ -44,12 +44,12 @@ Map<String, double> calculateCategoryTotals(List<ExpensesModel> expenses) {
             ifAbsent: () => amount);
       } on FormatException catch (e) {
         if (kDebugMode) {
-          print("خطأ في تنسيق المبلغ: ${expense.amount}");
+          print("خطأ في تنسيق المبلغ: $e");
         }
       }
     }
   }
-  print(categoryTotals);
+
   return categoryTotals;
 }
 

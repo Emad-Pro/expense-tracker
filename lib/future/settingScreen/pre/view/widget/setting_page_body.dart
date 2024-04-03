@@ -1,7 +1,7 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
-import 'package:expense_tracker/core/service_locator.dart';
+import 'package:expense_tracker/core/get_It/service_locator.dart';
 import 'package:expense_tracker/core/theme/theme.dart';
-import 'package:expense_tracker/future/settingScreen/pre/view/widget/custom_listTile_widget.dart';
+import 'package:expense_tracker/core/widget/custom_listTile_widget.dart';
 import 'package:expense_tracker/future/settingScreen/pre/viewModel/cubit/setting_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

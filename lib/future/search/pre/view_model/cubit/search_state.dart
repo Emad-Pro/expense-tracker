@@ -1,10 +1,14 @@
 part of 'search_cubit.dart';
 
-sealed class SearchState extends Equatable {
-  const SearchState();
+class SearchState extends Equatable {
+  final String? categoryValue;
+
+  SearchState({this.categoryValue});
+
+  SearchState copyWith({String? categoryValue}) {
+    return SearchState(categoryValue: categoryValue ?? this.categoryValue);
+  }
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [categoryValue];
 }
-
-final class SearchInitial extends SearchState {}

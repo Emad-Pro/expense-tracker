@@ -1,5 +1,5 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
-import 'package:expense_tracker/future/expense/pre/view/widget/build_listView_lastTest_enteries.dart';
+import 'package:expense_tracker/core/widget/build_listView_lastTest_enteries.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:expense_tracker/future/lastest_enteries/view/lastest_enteries.dart';
 import 'package:flutter/material.dart';
