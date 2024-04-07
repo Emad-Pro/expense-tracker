@@ -1,6 +1,7 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/app_constanse.dart';
 import 'package:expense_tracker/core/widget/build_custom_icon_category.dart';
+import 'package:expense_tracker/future/categoires/view/categories_details_screen.dart';
 
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,7 +36,7 @@ class CategoriesGridView extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 1.3,
                 crossAxisCount: 2,
-                mainAxisExtent: MediaQuery.of(context).size.height * 0.22,
+                mainAxisExtent: MediaQuery.of(context).size.height * 0.085,
                 mainAxisSpacing: 25,
                 crossAxisSpacing: 25),
             itemCount: AppConstanse.categories.length,
@@ -66,7 +67,9 @@ class CustomCategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Implement your navigation logic here
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return CategoriesDetailsScreen(categoryName: categoryItem);
+        }));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -74,7 +77,7 @@ class CustomCategoriesWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
@@ -87,38 +90,44 @@ class CustomCategoriesWidget extends StatelessWidget {
                     height: 40,
                   ),
                 ),
-                // Use a map or switch statement for cleaner icon selection
                 BuildCustomIconCategory(categoryItem: categoryItem),
               ],
             ),
             const SizedBox(
               height: 12,
             ),
-            Text(
-              categoryItem.tr(context),
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Builder(
-              builder: (
-                BuildContext context,
-              ) {
-                double? value;
-                for (var element in categoryData) {
-                  if (element.key == categoryItem) {
-                    value = element.value;
-                  }
-                }
-                return Text(
-                  value == null
-                      ? "0.0"
-                      : value.toString(), // Display with 2 decimal places
-                  style: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.w400),
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    categoryItem.tr(context),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Builder(
+                    builder: (BuildContext context) {
+                      double? value;
+                      for (var element in categoryData) {
+                        if (element.key == categoryItem) {
+                          value = element.value;
+                        }
+                      }
+                      return Text(
+                        value == null
+                            ? "0.0"
+                            : value.toString(), // Display with 2 decimal places
+                        style: const TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w400),
+                      );
+                    },
+                  ),
+                ],
+              ),
             )
           ],
         ),

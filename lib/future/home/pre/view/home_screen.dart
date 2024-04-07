@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
           floatingActionButtonLocation:
               BlocProvider.of<HomeCubit>(context).showBottomSheet
                   ? FloatingActionButtonLocation.endDocked
-                  : FloatingActionButtonLocation.startFloat,
+                  : FloatingActionButtonLocation.miniCenterDocked,
         );
       },
     );

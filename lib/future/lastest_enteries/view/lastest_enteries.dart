@@ -1,11 +1,16 @@
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
-import 'package:expense_tracker/core/widget/build_item_listView_lastTest_enteries.dart';
+import 'package:expense_tracker/core/get_It/service_locator.dart';
+
+import 'package:expense_tracker/core/widget/listView_expense_item.dart';
 import 'package:expense_tracker/future/expense/pre/viewModel/cubit/expense_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LastestEnteries extends StatelessWidget {
-  const LastestEnteries({super.key, required this.expenseState});
-  final ExpenseState expenseState;
+  const LastestEnteries({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,19 +19,14 @@ class LastestEnteries extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: ListView.separated(
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                height: 5,
-              );
-            },
-            itemCount: expenseState.getExpansesModel!.length,
-            itemBuilder: (context, index) {
-              return BuildItemListViewLastTestEnteries(
-                  expensesModel: expenseState.getExpansesModel![index]);
-            }),
+      body: BlocBuilder<ExpenseCubit, ExpenseState>(
+        builder: (context, state) {
+          return ListViewExpenseItem(
+            getExpansesModel: state.getExpansesModel,
+            isSlidable: true,
+            choiceCubit: "expenseCubit",
+          );
+        },
       ),
     );
   }

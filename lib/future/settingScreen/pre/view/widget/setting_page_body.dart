@@ -2,6 +2,7 @@ import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/get_It/service_locator.dart';
 import 'package:expense_tracker/core/theme/theme.dart';
 import 'package:expense_tracker/core/widget/custom_listTile_widget.dart';
+import 'package:expense_tracker/future/settingScreen/pages/howIm.dart';
 import 'package:expense_tracker/future/settingScreen/pre/viewModel/cubit/setting_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,6 @@ class SettingPageBody extends StatelessWidget {
           }),
           CustomListTileWidget(
             icon: Icons.language,
-            onTap: () {},
             title: "language".tr(context),
             subtitle: "You can switch between Arabic and English".tr(context),
             color: Colors.green[900],
@@ -87,7 +87,10 @@ class SettingPageBody extends StatelessWidget {
                     : const Icon(Icons.keyboard_arrow_left),
             icon: CupertinoIcons.info_circle_fill,
             color: Colors.purple[900],
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HowImPage()));
+            },
             title: "About".tr(context),
             subtitle: "Information about the developer".tr(context),
           ),

@@ -9,11 +9,12 @@ class BuildListViewLastTestEnteries extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
-        itemCount: expenseState.getExpansesModel!.length <= 5
+        itemCount: expenseState.getExpansesModel!.length <= 4
             ? expenseState.getExpansesModel!.length
             : 2,
         itemBuilder: (context, index) {
           return BuildItemListViewLastTestEnteries(
+            isSlidable: false,
             expensesModel: expenseState.getExpansesModel![index],
           );
         });

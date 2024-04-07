@@ -9,6 +9,8 @@ abstract class IsarDataBase {
   Future<List<ExpensesModel>> getData();
   Future<void> updateData(ExpensesModel expensesModel);
   Future<void> deleteData(int id);
+  Future<List<ExpensesModel>> getDataWithCategory(
+      {required String categoryName});
   Future<List<ExpensesModel>> getDataWithMounth({int? year, int? month});
   Future<List<ExpensesModel>>? qureyExpenseMultiple(
       ExpenseSearchModel expenseSearchModel);
@@ -75,7 +77,9 @@ class IsarDataBaseImp extends IsarDataBase {
     final expensesModel = await isar.expensesModels
         .filter()
         .descriptionContains(expenseSearchModel.description ?? '')
-        .categoriesContains(expenseSearchModel.category ?? '')
+        .categoriesContains(expenseSearchModel.category == "all"
+            ? ""
+            : expenseSearchModel.category ?? '')
         .amountBetween(
             expenseSearchModel.startAmount, expenseSearchModel.endAmount)
         .dateBetween(expenseSearchModel.endDate, expenseSearchModel.startDate)
@@ -86,5 +90,15 @@ class IsarDataBaseImp extends IsarDataBase {
 
   Future<void> deleteAllData() async {
     await isar.writeTxn(() => isar.expensesModels.clear());
+  }
+
+  @override
+  Future<List<ExpensesModel>> getDataWithCategory(
+      {required String categoryName}) async {
+    final expensesModel = await isar.expensesModels
+        .filter()
+        .categoriesContains(categoryName)
+        .findAll();
+    return expensesModel;
   }
 }

@@ -27,6 +27,7 @@ class ExpenseCubit extends Cubit<ExpenseState> {
             .then((value) {
           emit(
             state.copyWith(
+              deleteExpensesData: RequestState.loading,
               categoriesTotalItem: calculateCategoryTotals(value),
               categoriesItems: getCategoriesItem(value),
               totalAmount: calcTotalAmountMethod(value),
@@ -43,6 +44,7 @@ class ExpenseCubit extends Cubit<ExpenseState> {
         emit(
           state.copyWith(
             categoriesTotalItem: calculateCategoryTotals(newValue),
+            deleteExpensesData: RequestState.loading,
             categoriesItems: getCategoriesItem(newValue),
             totalAmount: calcTotalAmountMethod(newValue),
             getExpansesModel: newValue.reversed.toList(),
@@ -60,29 +62,36 @@ class ExpenseCubit extends Cubit<ExpenseState> {
         getDataFromDatabase();
       },
     ).catchError(
-      (onError) {},
+      (onError) {
+        emit(state.copyWith(addExpenseItem: RequestState.erorr));
+      },
     );
   }
 
   updateDataFromDatabase(ExpensesModel expensesModel) async {
-    await isarDataBase
-        .updateData(expensesModel)
-        .then(
-          (value) {},
-        )
-        .catchError(
-          (onError) {},
-        );
+    await isarDataBase.updateData(expensesModel).then(
+      (value) {
+        emit(state.copyWith());
+      },
+    ).catchError(
+      (onError) {},
+    );
   }
 
-  deleteDataFromDatabase(int id) async {
-    await isarDataBase
-        .deleteData(id)
-        .then(
-          (value) {},
-        )
-        .catchError(
-          (onError) {},
+  deleteDataFromDatabase(ExpensesModel expensesModel) async {
+    await isarDataBase.deleteData(expensesModel.id).then(
+      (value) {
+        emit(state.copyWith(deleteExpensesData: RequestState.sucess));
+        getDataFromDatabase(
+          dateModel: DateModel()
+            ..month = expensesModel.date!.month
+            ..year = expensesModel.date!.year,
         );
+      },
+    ).catchError(
+      (onError) {
+        emit(state.copyWith(deleteExpensesData: RequestState.erorr));
+      },
+    );
   }
 }

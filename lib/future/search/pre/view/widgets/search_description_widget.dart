@@ -20,8 +20,10 @@ class TextFormFiledSearchWidget extends StatelessWidget {
       ),
       child: TextFormField(
         controller: textFormFiledController,
-        decoration:
-            InputDecoration(border: InputBorder.none, hintText: hintText),
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hintText,
+            prefixIcon: const Icon(Icons.description)),
       ),
     );
   }

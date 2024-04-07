@@ -39,6 +39,7 @@
     "clear": "clear",
     "gps": "Gps",
     "close": "close",
+    "All": "All",
     "openSetting": "open Setting",
     "YouNeedToTurnOnTheGPSService": "You need to turn on the GPS service",
     "youNeedPermissions": "You need permissions",
@@ -175,5 +176,10 @@
     "Ease Add  and tracking": "Ease Add  and tracking",
     "It can take long term financial costs . That's why you might want to get this expense tracking app. It provides an independent classification of items. These apps use advanced algorithms to analyze your budget and automatically assign you expenses": "It can take long term financial costs . That's why you might want to get this expense tracking app. It provides an independent classification of items. These apps use advanced algorithms to analyze your budget and automatically assign you expenses",
     "Real-time synchronization and data backup": "Real-time synchronization and data backup",
-    "Provides real-time synchronization and data backup. This ensures that your expense data is always up to date and stored securely": "Provides real-time synchronization and data backup. This ensures that your expense data is always up to date and stored securely"
+    "Provides real-time synchronization and data backup. This ensures that your expense data is always up to date and stored securely": "Provides real-time synchronization and data backup. This ensures that your expense data is always up to date and stored securely",
+    "category": "Category",
+    "Delete": "delete",
+    "Edit": "edit",
+    "Multiple search for expenses": "Multiple search for expenses",
+    "Search Expense": "Search Expense"
 }

@@ -56,7 +56,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<Widget> listOfWidget() => [
         const ExpensePage(),
         const CategoriesScreen(),
-        SearchPage(expanseModelGetData: expanseModelGetData),
+        const SearchPage(),
         const SettingPage(),
       ];
   //تهيئة صفحات bottomBar

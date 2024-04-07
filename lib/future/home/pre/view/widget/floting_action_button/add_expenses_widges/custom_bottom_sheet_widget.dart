@@ -19,9 +19,9 @@ class CustomBottomSheetWidget extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
-        return ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: homeCubit.colofloating),
+        return FloatingActionButton(
+            shape: CircleBorder(),
+            backgroundColor: homeCubit.colofloating,
             onPressed: () async {
               if (homeCubit.showBottomSheet) {
                 Navigator.pop(context);

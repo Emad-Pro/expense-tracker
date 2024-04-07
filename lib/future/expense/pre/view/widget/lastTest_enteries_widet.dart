@@ -27,8 +27,7 @@ class LastTestEnteriesWidet extends StatelessWidget {
               MaterialButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          LastestEnteries(expenseState: expenseState)));
+                      builder: (context) => const LastestEnteries()));
                 },
                 child: Text("View all".tr(context)),
               )

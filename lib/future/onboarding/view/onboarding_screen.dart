@@ -106,60 +106,78 @@ class OnBoardingDrawer extends StatelessWidget {
               child: Center(
                   child: Text(
             "Settings".tr(context),
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ))),
-          BlocBuilder<SettingCubit, SettingState>(builder: (context, state) {
-            return CustomListTileWidget(
-              icon: CupertinoIcons.moon_fill,
-              color: Colors.orange[900],
-              title: "Theme Mode".tr(context),
-              subtitle:
-                  "You can switch between light mode and dark mode".tr(context),
-              widget: Switch(
-                  value: ThemeService.darkModeValue,
-                  onChanged: (value) {
-                    getIt<SettingCubit>().changeThemeMode();
-                  }),
-            );
-          }),
-          CustomListTileWidget(
-            icon: Icons.language,
-            onTap: () {},
-            title: "language".tr(context),
-            subtitle: "You can switch between Arabic and English".tr(context),
-            color: Colors.green[900],
-            widget: SizedBox(
-              height: 200,
-              width: 100,
-              child: DropdownButton<String>(
-                  isExpanded: true,
-                  isDense: false,
-                  value: BlocProvider.of<SettingCubit>(context)
-                              .locale!
-                              .languageCode ==
-                          "en"
-                      ? "English"
-                      : "Arabic",
-                  items: ["English", "Arabic"].map((String items) {
-                    return DropdownMenuItem<String>(
-                      value: items,
-                      child: Text(items.tr(context)),
-                    );
-                  }).toList(),
-                  onChanged: (newValue) {
-                    if (newValue == "English") {
-                      BlocProvider.of<SettingCubit>(context)
-                          .changeLanguage("en");
-                    } else if (newValue == "Arabic") {
-                      BlocProvider.of<SettingCubit>(context)
-                          .changeLanguage("ar");
-                    }
-                  }),
-            ),
-          ),
+          ThemeSwitchCustomWidget(),
+          ChangeLanguageWidget(),
         ],
       ),
     );
+  }
+}
+
+class ChangeLanguageWidget extends StatelessWidget {
+  const ChangeLanguageWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomListTileWidget(
+      icon: Icons.language,
+      onTap: () {},
+      title: "language".tr(context),
+      subtitle: "You can switch between Arabic and English".tr(context),
+      color: Colors.green[900],
+      widget: SizedBox(
+        height: 200,
+        width: 100,
+        child: DropdownButton<String>(
+            isExpanded: true,
+            isDense: false,
+            value:
+                BlocProvider.of<SettingCubit>(context).locale!.languageCode ==
+                        "en"
+                    ? "English"
+                    : "Arabic",
+            items: ["English", "Arabic"].map((String items) {
+              return DropdownMenuItem<String>(
+                value: items,
+                child: Text(items.tr(context)),
+              );
+            }).toList(),
+            onChanged: (newValue) {
+              if (newValue == "English") {
+                BlocProvider.of<SettingCubit>(context).changeLanguage("en");
+              } else if (newValue == "Arabic") {
+                BlocProvider.of<SettingCubit>(context).changeLanguage("ar");
+              }
+            }),
+      ),
+    );
+  }
+}
+
+class ThemeSwitchCustomWidget extends StatelessWidget {
+  const ThemeSwitchCustomWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SettingCubit, SettingState>(builder: (context, state) {
+      return CustomListTileWidget(
+        icon: CupertinoIcons.moon_fill,
+        color: Colors.orange[900],
+        title: "Theme Mode".tr(context),
+        subtitle: "You can switch between light mode and dark mode".tr(context),
+        widget: Switch(
+            value: ThemeService.darkModeValue,
+            onChanged: (value) {
+              getIt<SettingCubit>().changeThemeMode();
+            }),
+      );
+    });
   }
 }
 
@@ -180,7 +198,7 @@ class OnboardingSelectCureuncyWidget extends StatelessWidget {
           child: ListTile(
             title: Text(
               "Select Currency".tr(context),
-              style: TextStyle(),
+              style: const TextStyle(),
             ),
             trailing: DropdownButton<String>(
                 dropdownColor: Theme.of(context).colorScheme.primary,
@@ -271,7 +289,7 @@ class BeautifulApperanceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoOnboardingPage(
       title: Text('Beautiful and Consistent Appearance'.tr(context)),
-      body: Icon(
+      body: const Icon(
         CupertinoIcons.check_mark_circled,
         size: 200,
       ),

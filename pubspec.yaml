@@ -43,6 +43,7 @@ dependencies:
   random_color_scheme: ^0.1.4
   graphic: ^2.2.1
   animated_conditional_builder: ^0.0.5
+  dropdown_textfield: ^1.0.8
 
 dev_dependencies:
   flutter_test:

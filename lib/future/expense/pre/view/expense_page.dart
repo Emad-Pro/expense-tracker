@@ -37,6 +37,9 @@ class ExpensePage extends StatelessWidget {
                                 ColumnChartWidget(expenseState: state),
                                 if (state.getExpansesModel != null)
                                   LastTestEnteriesWidet(expenseState: state),
+                                const SizedBox(
+                                  height: 100,
+                                )
                               ],
                             ),
                         fallback: (context) => const WhoPorject())),
@@ -102,7 +105,7 @@ class ColumnChartWidget extends StatelessWidget {
                 rightTitles: AxisTitles(
                     axisNameWidget: Text(
                         "Price is according to the ${ProfileService.currancy} currency")),
-                bottomTitles: AxisTitles(
+                bottomTitles: const AxisTitles(
                     axisNameWidget: Text("Days In Month"),
                     sideTitles: SideTitles(showTitles: false)),
               ),
