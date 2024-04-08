@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:cupertino_onboarding/cupertino_onboarding.dart';
-import 'package:equatable/equatable.dart';
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +45,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
           ),
         ),
       ];
-  List<String> currency = ["EGP", "USD", "SYP"];
+
   changeCurrencyMethod(String value) {
     selectedCurrency = value;
     emit(ChangeCurrencyValueState());

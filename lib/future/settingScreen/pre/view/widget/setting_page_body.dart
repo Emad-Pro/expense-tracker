@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../pages/profile/edit_profile_page.dart';
+
 class SettingPageBody extends StatelessWidget {
   const SettingPageBody({
     super.key,
@@ -21,7 +23,11 @@ class SettingPageBody extends StatelessWidget {
         children: [
           CustomListTileWidget(
             icon: CupertinoIcons.profile_circled,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return EditProfilePage();
+              }));
+            },
             title: "Profile".tr(context),
             subtitle: "Profile Details".tr(context),
             color: Colors.blue[900],

@@ -50,6 +50,9 @@ class MyApp extends StatelessWidget {
               if (state.deleteExpensesData == RequestState.sucess) {
                 BlocProvider.of<SearchCubit>(context)
                     .multipleSearchMethod(ExpenseSearchModel());
+              } else if (state.updateExpansesData == RequestState.sucess) {
+                BlocProvider.of<SearchCubit>(context)
+                    .multipleSearchMethod(ExpenseSearchModel());
               }
             }),
             BlocListener<CategoryCubit, CategoryState>(

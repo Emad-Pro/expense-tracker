@@ -25,42 +25,38 @@ class ButtonAddExpenseWidget extends StatelessWidget {
   final GlobalKey<FormState> formkey;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExpenseCubit, ExpenseState>(
-      builder: (context, state) {
-        return Center(
-          child: Container(
-            margin: EdgeInsetsDirectional.only(top: 0, bottom: 5),
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: MaterialButton(
-                color: Theme.of(context).colorScheme.secondary,
-                onPressed: () async {
-                  if (formkey.currentState!.validate()) {
-                    await BlocProvider.of<ExpenseCubit>(context)
-                        .addNewDataFromDatabase(
-                      ExpensesModel()
-                        ..amount = double.parse(amountController.text)
-                        ..categories = categoriesController.text
-                        ..time = DateFormat.Hm().parse(timeController.text)
-                        ..date = DateFormat('dd , MMM, yyy')
-                            .parse(dateController.text)
-                        ..description = descriptionController.text,
-                    );
-                    descriptionController.clear();
-                    amountController.clear();
-                    dateController.clear();
-                    categoriesController.clear();
-                    timeController.clear();
-                    Navigator.pop(context);
-                  }
-                },
-                child: Text("Add Expense".tr(context)),
-              ),
-            ),
+    return Center(
+      child: Container(
+        margin: EdgeInsetsDirectional.only(top: 0, bottom: 5),
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: MaterialButton(
+            color: Theme.of(context).colorScheme.secondary,
+            onPressed: () async {
+              if (formkey.currentState!.validate()) {
+                await BlocProvider.of<ExpenseCubit>(context)
+                    .addNewDataFromDatabase(
+                  ExpensesModel()
+                    ..amount = double.parse(amountController.text)
+                    ..categories = categoriesController.text
+                    ..time = DateFormat.Hm().parse(timeController.text)
+                    ..date =
+                        DateFormat('dd , MMM, yyy').parse(dateController.text)
+                    ..description = descriptionController.text,
+                );
+                descriptionController.clear();
+                amountController.clear();
+                dateController.clear();
+                categoriesController.clear();
+                timeController.clear();
+                Navigator.pop(context);
+              }
+            },
+            child: Text("Add Expense".tr(context)),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

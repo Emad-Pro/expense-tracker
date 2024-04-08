@@ -1,5 +1,6 @@
 import 'package:cupertino_onboarding/cupertino_onboarding.dart';
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
+import 'package:expense_tracker/core/app_constanse.dart';
 import 'package:expense_tracker/core/get_It/service_locator.dart';
 import 'package:expense_tracker/core/profile_service/profile.dart';
 import 'package:expense_tracker/core/sharedPreferences/cacheHelper.dart';
@@ -214,9 +215,7 @@ class OnboardingSelectCureuncyWidget extends StatelessWidget {
                   BlocProvider.of<OnboardingCubit>(context)
                       .changeCurrencyMethod(newValue!);
                 },
-                items: BlocProvider.of<OnboardingCubit>(context)
-                    .currency
-                    .map((String currency) {
+                items: AppConstanse.currency.map((String currency) {
                   return DropdownMenuItem<String>(
                     value: currency,
                     child: Text(currency.tr(context)),

@@ -1,11 +1,27 @@
 part of 'setting_cubit.dart';
 
-class SettingState {}
+class SettingState extends Equatable {
+  final RequestState? changeProfileInfoState;
 
-class ThemeSettingChangedState extends SettingState {}
+  const SettingState({this.changeProfileInfoState});
+  SettingState copyWith({RequestState? changeProfileInfoState}) {
+    return SettingState(
+        changeProfileInfoState:
+            changeProfileInfoState ?? this.changeProfileInfoState);
+  }
+
+  @override
+  List<Object?> get props => [changeProfileInfoState];
+}
+
+class ThemeSettingChangedLoadingState extends SettingState {}
+
+class ThemeSettingChangedSuccessState extends SettingState {}
 
 class ChangeLocaleState extends SettingState {
   final Locale locale;
 
-  ChangeLocaleState({required this.locale});
+  const ChangeLocaleState({required this.locale});
+  @override
+  List<Object?> get props => [locale];
 }

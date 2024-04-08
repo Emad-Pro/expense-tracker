@@ -12,6 +12,7 @@ class PieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -26,16 +27,6 @@ class PieChart extends StatelessWidget {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            const Spacer(),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "View All",
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.onBackground),
-              ),
-            )
           ],
         ),
         Container(

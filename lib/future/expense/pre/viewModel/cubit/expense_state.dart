@@ -10,27 +10,30 @@ class ExpenseState extends Equatable {
   final List<String>? categoriesItems; //
   final Map<String, double>? categoriesTotalItem; //
   final RequestState deleteExpensesData;
-  const ExpenseState({
-    this.getDatabaseExpansesState = RequestState.loading,
-    this.addExpenseItem = RequestState.loading,
-    this.getExpansesModel,
-    this.totalAmount = 0,
-    this.messageExpansesText = '',
-    this.getMonthsExpense,
-    this.categoriesItems,
-    this.categoriesTotalItem,
-    this.deleteExpensesData = RequestState.loading,
-  });
-  ExpenseState copyWith(
-      {RequestState? getDatabaseExpansesState,
-      List<ExpensesModel>? getExpansesModel,
-      double? totalAmount,
-      String? messageExpansesText,
-      List<String>? getMonthsExpense,
-      Map<String, double>? categoriesTotalItem,
-      List<String>? categoriesItems,
-      RequestState? addExpenseItem,
-      RequestState? deleteExpensesData}) {
+  final RequestState updateExpansesData;
+  const ExpenseState(
+      {this.getDatabaseExpansesState = RequestState.loading,
+      this.addExpenseItem = RequestState.loading,
+      this.getExpansesModel,
+      this.totalAmount = 0,
+      this.messageExpansesText = '',
+      this.getMonthsExpense,
+      this.categoriesItems,
+      this.categoriesTotalItem,
+      this.deleteExpensesData = RequestState.loading,
+      this.updateExpansesData = RequestState.loading});
+  ExpenseState copyWith({
+    RequestState? getDatabaseExpansesState,
+    List<ExpensesModel>? getExpansesModel,
+    double? totalAmount,
+    String? messageExpansesText,
+    List<String>? getMonthsExpense,
+    Map<String, double>? categoriesTotalItem,
+    List<String>? categoriesItems,
+    RequestState? addExpenseItem,
+    RequestState? deleteExpensesData,
+    RequestState? updateExpansesData,
+  }) {
     return ExpenseState(
         messageExpansesText: messageExpansesText ?? this.messageExpansesText,
         getExpansesModel: getExpansesModel ?? this.getExpansesModel,
@@ -41,7 +44,8 @@ class ExpenseState extends Equatable {
         categoriesItems: categoriesItems ?? this.categoriesItems,
         categoriesTotalItem: categoriesTotalItem ?? this.categoriesTotalItem,
         addExpenseItem: addExpenseItem ?? this.addExpenseItem,
-        deleteExpensesData: deleteExpensesData ?? this.deleteExpensesData);
+        deleteExpensesData: deleteExpensesData ?? this.deleteExpensesData,
+        updateExpansesData: updateExpansesData ?? this.updateExpansesData);
   }
 
   @override
@@ -54,6 +58,7 @@ class ExpenseState extends Equatable {
         categoriesItems,
         categoriesTotalItem,
         addExpenseItem,
-        deleteExpensesData
+        deleteExpensesData,
+        updateExpansesData
       ];
 }

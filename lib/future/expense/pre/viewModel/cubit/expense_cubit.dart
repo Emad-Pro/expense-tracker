@@ -71,10 +71,17 @@ class ExpenseCubit extends Cubit<ExpenseState> {
   updateDataFromDatabase(ExpensesModel expensesModel) async {
     await isarDataBase.updateData(expensesModel).then(
       (value) {
-        emit(state.copyWith());
+        emit(state.copyWith(updateExpansesData: RequestState.sucess));
+        getDataFromDatabase(
+          dateModel: DateModel()
+            ..month = expensesModel.date!.month
+            ..year = expensesModel.date!.year,
+        );
       },
     ).catchError(
-      (onError) {},
+      (onError) {
+        emit(state.copyWith(updateExpansesData: RequestState.erorr));
+      },
     );
   }
 

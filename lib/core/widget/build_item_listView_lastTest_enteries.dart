@@ -2,6 +2,7 @@ import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/expenses_model/expenses_model.dart';
 import 'package:expense_tracker/core/method/method_date.dart';
 import 'package:expense_tracker/core/profile_service/profile.dart';
+import 'package:expense_tracker/core/widget/show_bottom_SheetEdit_expense_widget.dart';
 import 'package:expense_tracker/future/categoires/view_model/cubit/category_cubit.dart';
 
 import 'package:expense_tracker/future/expense/pre/view/widget/custom_icons_stack_widget.dart';
@@ -63,7 +64,15 @@ class _BuildItemListViewLastTestEnteriesState
               label: 'Delete'.tr(context),
             ),
             SlidableAction(
-              onPressed: (BuildContext context) {},
+              onPressed: (BuildContext context) {
+                showBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return ShowBottomSheetEditExpenseWidget(
+                        expensesModel: widget.expensesModel,
+                      );
+                    });
+              },
               backgroundColor: const Color(0xFF21B7CA),
               foregroundColor: Colors.white,
               icon: Icons.edit_note_outlined,

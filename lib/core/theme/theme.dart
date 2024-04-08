@@ -43,7 +43,7 @@ class ThemeService {
 
   static Future changeDarkMode() async {
     darkModeValue = !darkModeValue;
-    print(darkModeValue);
+
     await CacheHelper.saveData(key: "darkMode", value: darkModeValue);
   }
 }

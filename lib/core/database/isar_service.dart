@@ -45,8 +45,11 @@ class IsarDataBaseImp extends IsarDataBase {
   @override
   Future<void> updateData(ExpensesModel expensesModel) async {
     final existingNote = await isar.expensesModels.get(expensesModel.id);
+    print(existingNote);
     if (existingNote != null) {
+      print("testsssssss");
       existingNote.description = expensesModel.description!;
+      existingNote.amount = expensesModel.amount!;
       await isar.writeTxn(() => isar.expensesModels.put(existingNote));
     }
   }
