@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:animated_conditional_builder/animated_conditional_builder.dart';
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/app_constanse.dart';
@@ -32,16 +33,22 @@ class ExpensePage extends StatelessWidget {
                         builder: (context) => Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                ExpensesTotalWidget(
-                                  expenseState: state,
+                                FadeInDown(
+                                  child: ExpensesTotalWidget(
+                                    expenseState: state,
+                                  ),
                                 ),
-                                ColumnChartWidget(expenseState: state),
+                                FadeInLeft(
+                                    child:
+                                        ColumnChartWidget(expenseState: state)),
                                 if (state.getExpansesModel != null)
-                                  LastTestEnteriesWidet(expenseState: state),
+                                  FadeInUp(
+                                      child: LastTestEnteriesWidet(
+                                          expenseState: state)),
                                 const SizedBox(
                                   height: 50,
                                 ),
-                                Text("© 2024 جميع الحقوق محفوظة".tr(context)),
+                                Text("© 2024 All rights reserved".tr(context)),
                                 const SizedBox(
                                   height: 20,
                                 ),

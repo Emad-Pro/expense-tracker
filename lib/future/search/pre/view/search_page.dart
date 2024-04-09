@@ -61,9 +61,11 @@ class SearchPage extends StatelessWidget {
           BlocBuilder<SearchCubit, SearchState>(
             builder: (context, state) {
               switch (state.searchBoxGetDataState) {
-                case RequestState.loading:
+                case SearchRequestState.normal:
+                  return Container();
+                case SearchRequestState.loading:
                   return const CircularProgressIndicator();
-                case RequestState.sucess:
+                case SearchRequestState.sucess:
                   return SizedBox(
                     height: MediaQuery.of(context).size.height * 0.9,
                     child: ListView.builder(
@@ -76,7 +78,7 @@ class SearchPage extends StatelessWidget {
                           );
                         }),
                   );
-                case RequestState.erorr:
+                case SearchRequestState.erorr:
                   return const Text("");
               }
             },

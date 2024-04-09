@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -9,12 +10,17 @@ class WhoPorject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          """It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."""
-              .tr(context),
-          style: const TextStyle(fontSize: 18),
-          textAlign: TextAlign.justify,
+        FadeInLeft(
+          child: Center(
+            child: Text(
+              """Track your expenses wisely with the 'Expense Manager' app Do you have trouble tracking your expenses? The 'Expense Tracker' app is here to help you! With 'Expense Tracker', you can: Record all your expenses accurately Categorize expenses by category and date Analyze your spending habits And much more Start recording your expenses now!!"""
+                  .tr(context),
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.justify,
+            ),
+          ),
         )
       ],
     );

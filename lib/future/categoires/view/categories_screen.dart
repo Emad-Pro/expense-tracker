@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:expense_tracker/future/categoires/view/widget/PieChart/pie_chart.dart';
 import 'package:expense_tracker/future/categoires/view/widget/categories_gridView.dart';
 

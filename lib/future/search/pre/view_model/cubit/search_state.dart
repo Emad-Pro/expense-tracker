@@ -2,19 +2,19 @@ part of 'search_cubit.dart';
 
 class SearchState extends Equatable {
   final String? categoryValue;
-  final RequestState searchBoxGetDataState;
+  final SearchRequestState searchBoxGetDataState;
   final List<ExpensesModel>? searchBoxGetDataModel;
   final String searchBoxGetDataErorrMessage;
   const SearchState({
     this.categoryValue,
-    this.searchBoxGetDataState = RequestState.loading,
+    this.searchBoxGetDataState = SearchRequestState.normal,
     this.searchBoxGetDataModel,
     this.searchBoxGetDataErorrMessage = "",
   });
 
   SearchState copyWith({
     String? categoryValue,
-    RequestState? searchBoxGetDataState,
+    SearchRequestState? searchBoxGetDataState,
     List<ExpensesModel>? searchBoxGetDataModel,
     String? searchBoxGetDataErorrMessage,
   }) {

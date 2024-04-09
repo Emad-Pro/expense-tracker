@@ -20,11 +20,11 @@ class SearchCubit extends Cubit<SearchState> {
           await _isarDataBase.qureyExpenseMultiple(expenseSearchModel);
       emit(state.copyWith(
         searchBoxGetDataModel: result,
-        searchBoxGetDataState: RequestState.sucess,
+        searchBoxGetDataState: SearchRequestState.sucess,
       ));
     } catch (e) {
       emit(state.copyWith(
-          searchBoxGetDataState: RequestState.erorr,
+          searchBoxGetDataState: SearchRequestState.erorr,
           searchBoxGetDataErorrMessage: e.toString()));
     }
   }

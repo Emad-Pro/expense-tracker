@@ -45,6 +45,7 @@ dependencies:
   animated_conditional_builder: ^0.0.5
   dropdown_textfield: ^1.0.8
   widget_circular_animator: ^1.0.0
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -53,7 +54,45 @@ dev_dependencies:
   build_runner:
   analyzer: 
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.13.1"
+# Icon Lunacher App
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon_launcher/expenses.png"
+  web:
+    generate: true
+    image_path: "assets/icon_launcher/expenses.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/icon_launcher/expenses.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/icon_launcher/expenses.png"
+  linux:
+    generate: true
+    image_path: "assets/icon_launcher/expenses.png"
+  # Icon Lunacher App  
+# Splash Screen
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splash_image/1.png
+  branding: assets/splash_image/1.png
+  color_dark: "#121212"
+  image_dark: assets/splash_image/1.png
+  branding_dark: assets/splash_image/1.png
 
+  android_12:
+    image: assets/splash_image/1.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/splash_image/1.png
+    icon_background_color_dark: "#121212"
+
+  web: true
+# Splash Screen
 flutter:
   uses-material-design: true
   assets:

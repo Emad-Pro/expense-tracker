@@ -1,5 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:expense_tracker/core/AppLocalizations/app_localizations.dart';
 import 'package:expense_tracker/core/app_constanse.dart';
+import 'package:expense_tracker/core/profile_service/profile.dart';
 import 'package:expense_tracker/core/widget/build_custom_icon_category.dart';
 import 'package:expense_tracker/future/categoires/view/categories_details_screen.dart';
 
@@ -20,14 +22,16 @@ class CategoriesGridView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding:
-              MediaQuery.of(context).padding.copyWith(top: 20.0, bottom: 10),
-          child: Text(
-            "Categories".tr(context),
-            style: TextStyle(
-                fontSize: MediaQuery.of(context).textScaler.scale(16),
-                fontWeight: FontWeight.w600),
+        FadeInRight(
+          child: Padding(
+            padding:
+                MediaQuery.of(context).padding.copyWith(top: 20.0, bottom: 10),
+            child: Text(
+              "Categories".tr(context),
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).textScaler.scale(16),
+                  fontWeight: FontWeight.w600),
+            ),
           ),
         ),
         GridView.builder(
@@ -65,71 +69,73 @@ class CustomCategoriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return CategoriesDetailsScreen(categoryName: categoryItem);
-        }));
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Card(
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
-                  child: const SizedBox(
-                    width: 40,
-                    height: 40,
-                  ),
-                ),
-                BuildCustomIconCategory(categoryItem: categoryItem),
-              ],
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return FadeInLeft(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return CategoriesDetailsScreen(categoryName: categoryItem);
+          }));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                alignment: Alignment.center,
                 children: [
-                  Text(
-                    categoryItem.tr(context),
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w700),
+                  Card(
+                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.08,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                  Builder(
-                    builder: (BuildContext context) {
-                      double? value;
-                      for (var element in categoryData) {
-                        if (element.key == categoryItem) {
-                          value = element.value;
-                        }
-                      }
-                      return Text(
-                        value == null
-                            ? "0.0"
-                            : value.toString(), // Display with 2 decimal places
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w400),
-                      );
-                    },
-                  ),
+                  BuildCustomIconCategory(categoryItem: categoryItem),
                 ],
               ),
-            )
-          ],
+              const SizedBox(
+                height: 12,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      categoryItem.tr(context),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Builder(
+                      builder: (BuildContext context) {
+                        double? value;
+                        for (var element in categoryData) {
+                          if (element.key == categoryItem) {
+                            value = element.value;
+                          }
+                        }
+                        return Text(
+                          value == null
+                              ? "0.0 ${ProfileService.currancy.toString().tr(context)}"
+                              : "${value.toString()} ${ProfileService.currancy.toString().tr(context)}", // Display with 2 decimal places
+                          style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
